@@ -80,10 +80,10 @@ class SearchResults{
                         print(self.poster)
                         
                     
-                        //let newMovie: Movie = Movie(title: self.title!, description: self.description!, poster: self.poster!, background: self.poster!, rating: self.rating!, releaseDate: self.date!, id: self.id!)
+                        let newMovie: Movie = Movie(title: self.title!, description: self.description!, poster: self.poster!, background: self.poster!, rating: self.rating!, releaseDate: self.date!, id: self.id!)
                         
                         
-                       // callBackArray.append(newMovie);
+                        callBackArray.append(newMovie);
                         
                     }
                 }
