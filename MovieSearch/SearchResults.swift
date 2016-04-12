@@ -11,14 +11,17 @@ import UIKit
 
 
 class SearchResults{
-
+    
     var title: String?
     var description: String?
-    var poster:  String?
-    var backdrop: String?
+    var posterURL:  String?
+    var backdropURL: String?
     var id:  Int?
     var rating:  Float?
     var date: String?
+    var poster:UIImage?
+    var backdrop:UIImage?
+    
     let apiKey:String = "9220f93712a0d77085967f893da01eae"
     
     func getMovieData(search: String, callback:(Array<Movie>) -> ())
@@ -47,16 +50,40 @@ class SearchResults{
                     {
                         self.title = d["original_title"] as? String ?? "nil"
                         self.description = d["overview"] as? String ?? "nil"
-                        self.poster = d["poster_path"] as? String ?? "nil"
-                        self.backdrop = d["backdrop_path"] as? String ?? "nil"
+                        self.posterURL = d["poster_path"] as? String ?? "nil"
+                        self.backdropURL = d["backdrop_path"] as? String ?? "nil"
                         self.id = d["id"] as? Int ?? -1
                         self.rating = d["vote_average"] as? Float ?? -1
                         self.date = d["release_date"] as? String ?? "nil"
                         
-                        let newMovie: Movie = Movie(title: self.title!, description: self.description!, poster: self.poster!, background: self.backdrop!, rating: self.rating!, releaseDate: self.date!, id: self.id!)
-
+                        var posterString:String
+                        if self.posterURL == "nil"
+                        {
+                            posterString = "https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png"
+                        }
+                        else
+                        {
+                            posterString = "http://image.tmdb.org/t/p/w500/\(self.posterURL!)"
+                            
+                        }
                         
-                        callBackArray.append(newMovie);
+                        
+                        let URL = NSURL(string: posterString)
+                        let imageData = NSData(contentsOfURL: URL!)
+                        //dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.poster = UIImage(data: imageData!)
+                        //})
+                        
+                        
+                        print(self.title)
+                       // print(self.description)
+                        print(self.poster)
+                        
+                    
+                        //let newMovie: Movie = Movie(title: self.title!, description: self.description!, poster: self.poster!, background: self.poster!, rating: self.rating!, releaseDate: self.date!, id: self.id!)
+                        
+                        
+                       // callBackArray.append(newMovie);
                         
                     }
                 }
@@ -70,5 +97,5 @@ class SearchResults{
     
     
     
- 
+    
 }

@@ -67,15 +67,34 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
         //        cache.getImage("https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png", imageView: imageView, defaultImage: "Poster")
         //
         //        cell.imageView!.image = imageView.image
+        var posterImage:UIImage?
+        var posterString:String
+        if movie.poster == "nil"
+        {
+            posterString = "https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png"
+        }
+        else
+        {
+            posterString = "http://image.tmdb.org/t/p/w500/\(movie.poster)"
+            
+        }
         
+        
+       // let URL = NSURL(string: posterString)
+        //let imageData = NSData(contentsOfURL: URL!)
+        //let dataTask = session.dataTaskWithRequest(request) { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+        //dispatch_async(dispatch_get_main_queue()) {
+        // self.poster = UIImage(data: imageData!)
+        //}
+        // }
+       
+               // posterImage = UIImage(data: imageData!)!
+        
+        
+        cell.imageView!.image = movie.poster
         return cell
-        
-        
-        
+  
     }
-    
-    
-    
     
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
