@@ -16,6 +16,7 @@
 		3F829FEE1CBC6EB5009BB70C /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F829FED1CBC6EB5009BB70C /* MovieListViewController.swift */; };
 		3F829FF01CBC6F63009BB70C /* MovieDescriptonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F829FEF1CBC6F63009BB70C /* MovieDescriptonViewController.swift */; };
 		3F829FF21CBC961F009BB70C /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F829FF11CBC961F009BB70C /* SearchResults.swift */; };
+		3F829FF41CBD3F05009BB70C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F829FF31CBD3F05009BB70C /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		3F829FED1CBC6EB5009BB70C /* MovieListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		3F829FEF1CBC6F63009BB70C /* MovieDescriptonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDescriptonViewController.swift; sourceTree = "<group>"; };
 		3F829FF11CBC961F009BB70C /* SearchResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
+		3F829FF31CBD3F05009BB70C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		3F829FB11CBC6B48009BB70C = {
 			isa = PBXGroup;
 			children = (
+				3F829FF31CBD3F05009BB70C /* Default-568h@2x.png */,
 				3F829FBC1CBC6B48009BB70C /* MovieSearch */,
 				3F829FD11CBC6B48009BB70C /* MovieSearchTests */,
 				3F829FDC1CBC6B48009BB70C /* MovieSearchUITests */,
@@ -239,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F829FC51CBC6B48009BB70C /* Assets.xcassets in Resources */,
+				3F829FF41CBD3F05009BB70C /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

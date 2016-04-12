@@ -8,22 +8,33 @@
 
 import UIKit
 
-class MovieListViewController: UIViewController, ResultsToMovieListViewControllerDelegate
+class MovieListViewController: UIViewController, UITextFieldDelegate
 {
     //private var searches = [SearchResults]()
     
     var movie: SearchResults = SearchResults()
     var myMovies:SearchResults?
     var arr = Array<Movie>()
+     let sampleTextField = UITextField(frame: CGRectMake(0, 0, 200, 20))
+
     override func viewDidLoad()
     {
-        movie.getMovieData(){responseObject in
+        
+       
+        sampleTextField.placeholder = "Enter text here"
+        sampleTextField.font = UIFont.systemFontOfSize(15)
+        sampleTextField.borderStyle = UITextBorderStyle.RoundedRect
+        sampleTextField.autocorrectionType = UITextAutocorrectionType.No
+        sampleTextField.keyboardType = UIKeyboardType.Default
+        sampleTextField.returnKeyType = UIReturnKeyType.Search
+        sampleTextField.clearButtonMode = UITextFieldViewMode.WhileEditing;
+        sampleTextField.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
+        sampleTextField.delegate = self
+        navigationItem.titleView = sampleTextField
+        self.view.backgroundColor = UIColor.whiteColor()
+     
             
-
-        for a in responseObject
-        {
-            print(a.title)
-        }
+           
         
         
         
@@ -53,13 +64,22 @@ class MovieListViewController: UIViewController, ResultsToMovieListViewControlle
         
       
         
-    }
     
-    func resultsUpdated(movieModel:Movie)
-    {
+
+func textFieldShouldReturn(textField: UITextField) -> Bool
+{
+    movie.getMovieData(sampleTextField.text!){responseObject in
+        
+        
+        for a in responseObject
+        {
+            print(a.title)
+        }
         
     }
     
+  return true
     
+    }
     
 }
