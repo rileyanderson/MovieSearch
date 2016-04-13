@@ -68,19 +68,20 @@ class SearchResults{
                         }
                         
                         
-                        let URL = NSURL(string: posterString)
-                        let imageData = NSData(contentsOfURL: URL!)
-                        //dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.poster = UIImage(data: imageData!)
-                        //})
+                       //let URL = NSURL(string: posterString)
+                       // var imageView:UIImageView = UIImageView()
+//                        let imageData = NSData(contentsOfURL: URL!)
+//                        //dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                            self.poster = UIImage(data: imageData!)
+//                        //})
                         
-                        
-                        print(self.title)
+                        //imageView!.setImageWithURL(URL, placeholderImage: self.poster);
+                        //print(self.title)
                        // print(self.description)
-                        print(self.poster)
-                        
+                        //print(self.poster)
+                        //self.poster = imageView.sd_setImageWithURL(URL).image
                     
-                        let newMovie: Movie = Movie(title: self.title!, description: self.description!, poster: self.poster!, background: self.poster!, rating: self.rating!, releaseDate: self.date!, id: self.id!)
+                        let newMovie: Movie = Movie(title: self.title!, description: self.description!, poster: posterString, background: posterString, rating: self.rating!, releaseDate: self.date!, id: self.id!)
                         
                         
                         callBackArray.append(newMovie);

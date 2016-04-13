@@ -17,12 +17,13 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
     var arr = Array<Movie>()
     let sampleTextField = UITextField(frame: CGRectMake(0, 0, 200, 20))
     var tableView = UITableView(frame: UIScreen.mainScreen().bounds, style: UITableViewStyle.Plain)
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
     }
     
     override func viewDidLoad()
     {
+        super.viewDidLoad()
         self.view.backgroundColor = UIColor.whiteColor()
         tableView.delegate      =   self
         tableView.dataSource    =   self
@@ -52,46 +53,19 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
         
         let movie:Movie = arr[indexPath.row]
         
-        cell.textLabel!.text = movie.title
-        cell.detailTextLabel!.text = movie.description
+        let URL = NSURL(string: movie.poster)
         
-        //        var myImage: UIImage!
-        //        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-        //
-        //            myImage =  UIImage(data: NSData(contentsOfURL: NSURL(string:"https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png")!)!)
-        //        })
-        //
-        //        cell.imageView!.image = myImage
-        //        var cache = ImageLoadingWithCache()
-        //        var imageView:UIImageView = UIImageView()
-        //        cache.getImage("https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png", imageView: imageView, defaultImage: "Poster")
-        //
-        //        cell.imageView!.image = imageView.image
-        var posterImage:UIImage?
-        var posterString:String
-        if movie.poster == "nil"
-        {
-            posterString = "https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png"
-        }
-        else
-        {
-            posterString = "http://image.tmdb.org/t/p/w500/\(movie.poster)"
-            
-        }
+        let title:String = movie.title
+        let desc:String = movie.description
         
+        cell.imageView!.sd_setImageWithURL(URL, placeholderImage: UIImage(named: "placeholder.png"))
         
-       // let URL = NSURL(string: posterString)
-        //let imageData = NSData(contentsOfURL: URL!)
-        //let dataTask = session.dataTaskWithRequest(request) { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
-        //dispatch_async(dispatch_get_main_queue()) {
-        // self.poster = UIImage(data: imageData!)
-        //}
-        // }
-       
-               // posterImage = UIImage(data: imageData!)!
+        cell.textLabel!.text = title
+        cell.detailTextLabel!.text = desc
+//        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//            self.tableView.reloadData()
+//        })
         
-        
-        cell.imageView!.image = movie.poster
         return cell
   
     }

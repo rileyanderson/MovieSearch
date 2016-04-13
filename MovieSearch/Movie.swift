@@ -16,15 +16,15 @@ class Movie
     
     var title: String
     var description: String
-    //var poster: String
-    //var background: String
+    var poster: String
+    var background: String
     var rating: Float
     var releaseDate: String
     var id: Int
-    var poster:UIImage
-    var background: UIImage
+    //var poster:UIImage
+    //var background: UIImage
     
-    init(title: String, description:String, poster:UIImage, background: UIImage, rating:Float, releaseDate: String, id:Int)
+    init(title: String, description:String, poster:String, background: String, rating:Float, releaseDate: String, id:Int)
     {
         self.title = title;
         self.description = description
