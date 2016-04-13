@@ -67,19 +67,6 @@ class SearchResults{
                             
                         }
                         
-                        
-                       //let URL = NSURL(string: posterString)
-                       // var imageView:UIImageView = UIImageView()
-//                        let imageData = NSData(contentsOfURL: URL!)
-//                        //dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                            self.poster = UIImage(data: imageData!)
-//                        //})
-                        
-                        //imageView!.setImageWithURL(URL, placeholderImage: self.poster);
-                        //print(self.title)
-                       // print(self.description)
-                        //print(self.poster)
-                        //self.poster = imageView.sd_setImageWithURL(URL).image
                     
                         let newMovie: Movie = Movie(title: self.title!, description: self.description!, poster: posterString, background: posterString, rating: self.rating!, releaseDate: self.date!, id: self.id!)
                         

@@ -35,6 +35,8 @@
 		3F829FF01CBC6F63009BB70C /* MovieDescriptonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F829FEF1CBC6F63009BB70C /* MovieDescriptonViewController.swift */; };
 		3F829FF21CBC961F009BB70C /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F829FF11CBC961F009BB70C /* SearchResults.swift */; };
 		3F829FF41CBD3F05009BB70C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F829FF31CBD3F05009BB70C /* Default-568h@2x.png */; };
+		3FEB240E1CBDFFAF00377C67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FEB240D1CBDFFAF00377C67 /* Main.storyboard */; };
+		3FEB24101CBDFFC100377C67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FEB240F1CBDFFC100377C67 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +109,8 @@
 		3F829FEF1CBC6F63009BB70C /* MovieDescriptonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDescriptonViewController.swift; sourceTree = "<group>"; };
 		3F829FF11CBC961F009BB70C /* SearchResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		3F829FF31CBD3F05009BB70C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		3FEB240D1CBDFFAF00377C67 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		3FEB240F1CBDFFC100377C67 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +182,8 @@
 		3F829FB11CBC6B48009BB70C = {
 			isa = PBXGroup;
 			children = (
+				3FEB240F1CBDFFC100377C67 /* LaunchScreen.storyboard */,
+				3FEB240D1CBDFFAF00377C67 /* Main.storyboard */,
 				3F08273B1CBDC75C006F8D82 /* placeholder.png */,
 				3F0826F11CBDBDB8006F8D82 /* AFNetworking */,
 				3F829FF31CBD3F05009BB70C /* Default-568h@2x.png */,
@@ -342,6 +348,8 @@
 				3F829FC51CBC6B48009BB70C /* Assets.xcassets in Resources */,
 				3F08273C1CBDC75C006F8D82 /* placeholder.png in Resources */,
 				3F829FF41CBD3F05009BB70C /* Default-568h@2x.png in Resources */,
+				3FEB24101CBDFFC100377C67 /* LaunchScreen.storyboard in Resources */,
+				3FEB240E1CBDFFAF00377C67 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

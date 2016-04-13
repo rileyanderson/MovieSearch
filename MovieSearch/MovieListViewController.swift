@@ -10,13 +10,15 @@ import UIKit
 
 class MovieListViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource
 {
-    //private var searches = [SearchResults]()
-    
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var search: UITextField!
     var movie: SearchResults = SearchResults()
+    
     var myMovies:SearchResults?
     var arr = Array<Movie>()
-    let sampleTextField = UITextField(frame: CGRectMake(0, 0, 200, 20))
-    var tableView = UITableView(frame: UIScreen.mainScreen().bounds, style: UITableViewStyle.Plain)
+
+    
+    
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
     }
@@ -27,18 +29,10 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
         self.view.backgroundColor = UIColor.whiteColor()
         tableView.delegate      =   self
         tableView.dataSource    =   self
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.view.addSubview(self.tableView)
-        sampleTextField.placeholder = "Enter text here"
-        sampleTextField.font = UIFont.systemFontOfSize(15)
-        sampleTextField.borderStyle = UITextBorderStyle.RoundedRect
-        sampleTextField.autocorrectionType = UITextAutocorrectionType.No
-        sampleTextField.keyboardType = UIKeyboardType.Default
-        sampleTextField.returnKeyType = UIReturnKeyType.Search
-        sampleTextField.clearButtonMode = UITextFieldViewMode.WhileEditing;
-        sampleTextField.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
-        sampleTextField.delegate = self
-        navigationItem.titleView = sampleTextField
+
+        search.delegate = self
+        //navigationItem.titleView = sampleTextField
         
     }
     
@@ -49,23 +43,12 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: nil)
+
         
         let movie:Movie = arr[indexPath.row]
-        
-        let URL = NSURL(string: movie.poster)
-        
-        let title:String = movie.title
-        let desc:String = movie.description
-        
-        cell.imageView!.sd_setImageWithURL(URL, placeholderImage: UIImage(named: "placeholder.png"))
-        
-        cell.textLabel!.text = title
-        cell.detailTextLabel!.text = desc
-//        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//            self.tableView.reloadData()
-//        })
-        
+
+        let cell = tableView.dequeueReusableCellWithIdentifier("tableCell") as! TableCell
+        cell.updateCell(movie)
         return cell
   
     }
@@ -73,13 +56,8 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
-        movie.getMovieData(sampleTextField.text!){responseObject in
-            
-            
-            //            for a in responseObject
-            //            {
-            //                print(a.title)
-            //            }
+        movie.getMovieData(search.text!){responseObject in
+
             self.arr = responseObject
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
