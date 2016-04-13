@@ -37,6 +37,8 @@
 		3F829FF41CBD3F05009BB70C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F829FF31CBD3F05009BB70C /* Default-568h@2x.png */; };
 		3FEB240E1CBDFFAF00377C67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FEB240D1CBDFFAF00377C67 /* Main.storyboard */; };
 		3FEB24101CBDFFC100377C67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FEB240F1CBDFFC100377C67 /* LaunchScreen.storyboard */; };
+		3FEB24121CBF084500377C67 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEB24111CBF084500377C67 /* MovieDetailViewController.swift */; };
+		3FEB24141CBF08D400377C67 /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEB24131CBF08D400377C67 /* MovieDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +113,8 @@
 		3F829FF31CBD3F05009BB70C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3FEB240D1CBDFFAF00377C67 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		3FEB240F1CBDFFC100377C67 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3FEB24111CBF084500377C67 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		3FEB24131CBF08D400377C67 /* MovieDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +186,8 @@
 		3F829FB11CBC6B48009BB70C = {
 			isa = PBXGroup;
 			children = (
+				3FEB24131CBF08D400377C67 /* MovieDetailView.swift */,
+				3FEB24111CBF084500377C67 /* MovieDetailViewController.swift */,
 				3FEB240F1CBDFFC100377C67 /* LaunchScreen.storyboard */,
 				3FEB240D1CBDFFAF00377C67 /* Main.storyboard */,
 				3F08273B1CBDC75C006F8D82 /* placeholder.png */,
@@ -378,11 +384,13 @@
 				3F08272E1CBDBE9B006F8D82 /* SDWebImageManager.m in Sources */,
 				3F0827291CBDBE9B006F8D82 /* SDImageCache.m in Sources */,
 				3F08272D1CBDBE9B006F8D82 /* SDWebImageDownloaderOperation.m in Sources */,
+				3FEB24121CBF084500377C67 /* MovieDetailViewController.swift in Sources */,
 				3F0827361CBDBE9B006F8D82 /* UIView+WebCacheOperation.m in Sources */,
 				3F829FC01CBC6B48009BB70C /* ViewController.swift in Sources */,
 				3F0827301CBDBE9B006F8D82 /* UIButton+WebCache.m in Sources */,
 				3F0827281CBDBE9B006F8D82 /* NSData+ImageContentType.m in Sources */,
 				3F08272F1CBDBE9B006F8D82 /* SDWebImagePrefetcher.m in Sources */,
+				3FEB24141CBF08D400377C67 /* MovieDetailView.swift in Sources */,
 				3F08272C1CBDBE9B006F8D82 /* SDWebImageDownloader.m in Sources */,
 				3F829FBE1CBC6B48009BB70C /* AppDelegate.swift in Sources */,
 				3F0827331CBDBE9B006F8D82 /* UIImage+WebP.m in Sources */,

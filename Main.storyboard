@@ -104,7 +104,7 @@
                                             <outlet property="title" destination="xkI-ca-2oG" id="TXP-12-2Nd"/>
                                             <outlet property="userRating" destination="e7y-nw-LtQ" id="8p9-lm-qte"/>
                                             <outlet property="year" destination="XVW-mq-p0v" id="DPT-Bx-mMp"/>
-                                            <segue destination="kgB-UB-PMB" kind="show" id="XDk-pc-1FI"/>
+                                            <segue destination="38i-EU-9s0" kind="show" id="JaX-Fb-EcX"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -141,22 +141,61 @@
             <point key="canvasLocation" x="1539" y="420"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="7Yc-Kb-tLs">
+        <scene sceneID="qyb-GA-ojK">
             <objects>
-                <viewController id="kgB-UB-PMB" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="38i-EU-9s0" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="pTd-qm-yHg"/>
-                        <viewControllerLayoutGuide type="bottom" id="YyK-GT-yX7"/>
+                        <viewControllerLayoutGuide type="top" id="9aQ-DV-EC3"/>
+                        <viewControllerLayoutGuide type="bottom" id="waA-jh-P4h"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="YRo-Jn-OVI">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="7gj-mQ-xwK">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x6M-Vh-BC0">
+                                <rect key="frame" x="0.0" y="64" width="600" height="936"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zp3-sd-Poq">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zHJ-CN-8hm">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="263"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="263" id="eaF-QL-pTO"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="zHJ-CN-8hm" firstAttribute="leading" secondItem="zp3-sd-Poq" secondAttribute="leading" id="6I0-DJ-Vam"/>
+                                            <constraint firstItem="zHJ-CN-8hm" firstAttribute="top" secondItem="zp3-sd-Poq" secondAttribute="top" id="QaK-4F-8Pn"/>
+                                            <constraint firstAttribute="trailing" secondItem="zHJ-CN-8hm" secondAttribute="trailing" id="zpa-5g-OAg"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="zp3-sd-Poq" secondAttribute="trailing" id="b4N-BG-Lw1"/>
+                                    <constraint firstItem="zp3-sd-Poq" firstAttribute="leading" secondItem="x6M-Vh-BC0" secondAttribute="leading" id="co9-Ug-Gt1"/>
+                                    <constraint firstAttribute="bottom" secondItem="zp3-sd-Poq" secondAttribute="bottom" id="kIa-kR-m6y"/>
+                                    <constraint firstItem="zp3-sd-Poq" firstAttribute="top" secondItem="x6M-Vh-BC0" secondAttribute="top" id="w8H-VT-Dcr"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="x6M-Vh-BC0" firstAttribute="top" secondItem="9aQ-DV-EC3" secondAttribute="bottom" id="9Ak-jM-scR"/>
+                            <constraint firstItem="x6M-Vh-BC0" firstAttribute="leading" secondItem="7gj-mQ-xwK" secondAttribute="leading" id="Lwh-Ip-9E5"/>
+                            <constraint firstItem="zp3-sd-Poq" firstAttribute="width" secondItem="7gj-mQ-xwK" secondAttribute="width" id="anp-DI-Pw8"/>
+                            <constraint firstItem="waA-jh-P4h" firstAttribute="top" secondItem="x6M-Vh-BC0" secondAttribute="bottom" id="qcz-5U-8Yh"/>
+                            <constraint firstAttribute="trailing" secondItem="x6M-Vh-BC0" secondAttribute="trailing" id="uDE-oa-GaW"/>
+                        </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="1000"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Hm-f2-RLt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6vc-NR-Od8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2213" y="420"/>
+            <point key="canvasLocation" x="2255" y="415"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VJv-kx-llM">
