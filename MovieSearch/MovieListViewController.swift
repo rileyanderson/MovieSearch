@@ -19,7 +19,8 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
 
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool)
+    {
         tableView.reloadData()
     }
     

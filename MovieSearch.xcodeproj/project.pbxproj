@@ -38,6 +38,7 @@
 		3FEB24101CBDFFC100377C67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FEB240F1CBDFFC100377C67 /* LaunchScreen.storyboard */; };
 		3FEB24121CBF084500377C67 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEB24111CBF084500377C67 /* MovieDetailViewController.swift */; };
 		3FEB24141CBF08D400377C67 /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEB24131CBF08D400377C67 /* MovieDetailView.swift */; };
+		3FEB241A1CC03A0800377C67 /* ExtraImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEB24191CC03A0800377C67 /* ExtraImageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 		3FEB240F1CBDFFC100377C67 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3FEB24111CBF084500377C67 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieDetailViewController.swift; path = ../MovieDetailViewController.swift; sourceTree = "<group>"; };
 		3FEB24131CBF08D400377C67 /* MovieDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieDetailView.swift; path = ../MovieDetailView.swift; sourceTree = "<group>"; };
+		3FEB24191CC03A0800377C67 /* ExtraImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtraImageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 				3F829FED1CBC6EB5009BB70C /* MovieListViewController.swift */,
 				3F829FF11CBC961F009BB70C /* SearchResults.swift */,
 				3F0827391CBDC4E7006F8D82 /* TableCell.swift */,
+				3FEB24191CC03A0800377C67 /* ExtraImageCell.swift */,
 			);
 			path = MovieSearch;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				3F0827271CBDBE9B006F8D82 /* MKAnnotationView+WebCache.m in Sources */,
 				3F08272A1CBDBE9B006F8D82 /* SDWebImageCompat.m in Sources */,
 				3F829FF21CBC961F009BB70C /* SearchResults.swift in Sources */,
+				3FEB241A1CC03A0800377C67 /* ExtraImageCell.swift in Sources */,
 				3F829FEE1CBC6EB5009BB70C /* MovieListViewController.swift in Sources */,
 				3F08273A1CBDC4E7006F8D82 /* TableCell.swift in Sources */,
 				3F0827321CBDBE9B006F8D82 /* UIImage+MultiFormat.m in Sources */,
