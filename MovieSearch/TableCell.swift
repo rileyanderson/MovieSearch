@@ -24,8 +24,6 @@ class TableCell: UITableViewCell
         title.text = movie.title
         desc.text = movie.description
         userRating.text =  "\u{2B50} \(movie.rating) / 10"
-        let URL = NSURL(string: movie.poster)
-        
         let index = movie.releaseDate.rangeOfString("-", options: .BackwardsSearch)?.startIndex
         let movieYearDay = movie.releaseDate.substringToIndex(index!)
         
@@ -35,6 +33,8 @@ class TableCell: UITableViewCell
         
         //print(movieYear)
         year.text = "(\(movieYear))"
+
+        let URL = NSURL(string: movie.poster)
 
         poster.sd_setImageWithURL(URL, placeholderImage: UIImage(named: "placeholder.png"))
     }

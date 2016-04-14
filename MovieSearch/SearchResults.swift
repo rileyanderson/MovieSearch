@@ -21,8 +21,13 @@ class SearchResults{
     var date: String?
     var poster:UIImage?
     var backdrop:UIImage?
+    var genre:String?
+    var runtime:Int?
+    var mpaa:String?
     
     let apiKey:String = "9220f93712a0d77085967f893da01eae"
+    
+    
     
     func getMovieData(search: String, callback:(Array<Movie>) -> ())
     {
@@ -38,7 +43,7 @@ class SearchResults{
                     print("Not a 200 response")
                     return
             }
-            
+            print(url)
             // Read the JSON
             do {
                 if let _ = NSString(data:data!, encoding: NSUTF8StringEncoding) {
@@ -48,6 +53,7 @@ class SearchResults{
                     
                     for d in jsonDictionary["results"] as! [Dictionary<String, AnyObject>]
                     {
+                        // print(d)
                         self.title = d["original_title"] as? String ?? "nil"
                         self.description = d["overview"] as? String ?? "nil"
                         self.posterURL = d["poster_path"] as? String ?? "nil"
@@ -67,8 +73,30 @@ class SearchResults{
                             
                         }
                         
-                    
-                        let newMovie: Movie = Movie(title: self.title!, description: self.description!, poster: posterString, background: posterString, rating: self.rating!, releaseDate: self.date!, id: self.id!)
+                        //http://image.tmdb.org/t/p/w500/tsKF46QfepjVQSkvtYGPn7IICTC.jpg
+                        var backDropPath:String
+                        if self.backdropURL == "nil"
+                        {
+                            backDropPath = "https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png"
+                        }
+                        else
+                        {
+                            backDropPath = "http://image.tmdb.org/t/p/w500/\(self.backdropURL!)"
+                            
+                        }
+                        
+                        //self.getMoreData(self.id!){responseObject in
+                        
+                        //self.arr = responseObject
+                        //dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        // self.tableView.reloadData()
+                        // })
+                        // }
+                        
+                        
+                        
+                        
+                        let newMovie: Movie = Movie(title: self.title!, description: self.description!, poster: posterString, background: backDropPath, rating: self.rating!, releaseDate: self.date!, id: self.id!)
                         
                         
                         callBackArray.append(newMovie);
@@ -82,6 +110,79 @@ class SearchResults{
         }).resume()
         
     }
+    
+    
+    ///////////////////////////////////////
+    
+    func getMoreData(search: Movie, callback:(Array<String>) -> ())
+    {
+        let postEndpoint: String = "https://api.themoviedb.org/3/movie/\(search.id)?api_key=9220f93712a0d77085967f893da01eae&append_to_response=releases,trailers"
+        let session = NSURLSession.sharedSession()
+        let url = NSURL(string: postEndpoint)!
+        var callBackArray  = Array<String>()
+        self.genre = ""
+        var mpaaArray  = Array<String>()
+        var trailerArray = Array<String>()
+        // Make the POST call and handle it in a completion handler
+        session.dataTaskWithURL(url, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+            // Make sure we get an OK response
+            guard let realResponse = response as? NSHTTPURLResponse where
+                realResponse.statusCode == 200 else {
+                    print("Not a 200 response")
+                    return
+            }
+            print(url)
+            // Read the JSON
+            do {
+                if let _ = NSString(data:data!, encoding: NSUTF8StringEncoding) {
+                    
+                    // Parse the JSON
+                    let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                    
+                    for d in jsonDictionary["genres"] as! [Dictionary<String, AnyObject>]
+                    {
+                        
+                        //print(d)
+                        self.genre! += "|\( d["name"] as? String ?? "nil")"
+                        
+                        
+                        //genreArray.append(self.genre!)
+                        
+                        //print(self.genre)
+                        
+                    }
+                    
+                    self.runtime = jsonDictionary["runtime"] as? Int ?? -1
+                    
+                    self.genre! += "|";
+                    
+                    
+                    let releasesDictionary = jsonDictionary["releases"] as! Dictionary<String, AnyObject>
+                    
+                    for c in releasesDictionary["countries"] as! [Dictionary<String, AnyObject>]
+                    {
+                        if c["iso_3166_1"] as? String == "US"
+                        {
+                            self.mpaa = c["certification"] as? String
+                        
+                        }
+                    }
+
+                    callBackArray.append(self.genre!);
+                    callBackArray.append("\(self.runtime!)");
+                    callBackArray.append(self.mpaa!);
+                }
+                callback(callBackArray)
+            } catch {
+                print("bad things happened")
+            }
+        }).resume()
+        
+    }
+    
+    
+    
+    
     
     
     

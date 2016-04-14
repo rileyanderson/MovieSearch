@@ -53,6 +53,17 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
   
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        var cellIndex:Int?
+        //let letCell = sender as! TableCell
+        cellIndex = tableView.indexPathForSelectedRow!.row
+        
+        let destinationViewController = segue.destinationViewController as! MovieDetailViewController
+        destinationViewController.movie = arr[cellIndex!]
+        
+    }
+    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
@@ -61,6 +72,7 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
             self.arr = responseObject
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
+                
             })
             
         }
