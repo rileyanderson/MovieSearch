@@ -36,7 +36,8 @@ class SearchResults{
     
     func getMovieData(search: String, callback:(Array<Movie>) -> ())
     {
-        let postEndpoint: String = "https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&query=\(search)"
+        let searchSpaceFree:String = search.stringByReplacingOccurrencesOfString(" ", withString: "%20")
+        let postEndpoint: String = "https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&query=\(searchSpaceFree)"
         let session = NSURLSession.sharedSession()
         let url = NSURL(string: postEndpoint)!
         var callBackArray  = Array<Movie>()
@@ -113,6 +114,7 @@ class SearchResults{
     
     func getMoreData(search: Movie, callback:(MovieExtraData) -> ())
     {
+        
         let postEndpoint: String = "https://api.themoviedb.org/3/movie/\(search.id)?api_key=\(apiKey)&append_to_response=releases,trailers,images"
         let session = NSURLSession.sharedSession()
         let url = NSURL(string: postEndpoint)!
