@@ -19,6 +19,7 @@ class MovieDetailView: UIView
     @IBOutlet var runningTime: UILabel!
     @IBOutlet var desc: UILabel!
     @IBOutlet var genre: UILabel!
+    @IBOutlet var trailer: UIWebView!
     
     var images:Array<String> = Array<String>()
 
@@ -27,14 +28,13 @@ class MovieDetailView: UIView
     
     func loadData(movie:Movie)
     {
+        
         let URL = NSURL(string: movie.background)
         background.sd_setImageWithURL(URL, placeholderImage: UIImage(named: "placeholder.png"))
 
         
         let URLPoster = NSURL(string: movie.poster)
         poster.sd_setImageWithURL(URLPoster, placeholderImage: UIImage(named: "placeholder.png"))
-        
-        
         
         rating.text =  "\u{2B50} \(movie.rating) / 10"
         
@@ -46,11 +46,12 @@ class MovieDetailView: UIView
                 self.mpaa.text = "\(responseObject.mpaa) |"
                 self.images = responseObject.images
                 
-                
+                //var link = responseObject.trailer
+                self.trailer.allowsInlineMediaPlayback = true
+                self.trailer.loadHTMLString("<iframe width=\"\(self.trailer.frame.width - 15)\" height=\"\(self.trailer.frame.height)\" src=\"\(responseObject.trailerLink)?&playsinline=1\" frameborder=\"0\" allowfullscreen></iframe>", baseURL: nil)
                 
             })
-            
-            
+        
         }
         
     }

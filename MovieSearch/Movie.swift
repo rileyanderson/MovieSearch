@@ -48,13 +48,15 @@ class MovieExtraData
     var runtime:Int
     var mpaa:String
     var images:Array<String>
+    var trailerLink:String
     
-    init(genre: String, runtime:Int, mpaa:String, images: Array<String>)
+    init(genre: String, runtime:Int, mpaa:String, images: Array<String>, trailerLink:String)
     {
         self.genre = genre;
         self.runtime = runtime
         self.mpaa = mpaa
         self.images = images
+        self.trailerLink = trailerLink
     }
     
     

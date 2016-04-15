@@ -28,6 +28,7 @@ class SearchResults{
     var runtime:Int?
     var mpaa:String?
     var images:Array<String>?
+    var trailer:String?
     
     
     
@@ -93,7 +94,7 @@ class SearchResults{
                         }
 
                         let newMovie: Movie = Movie(title: self.title!, description: self.description!, poster: posterString, background: backDropPath, rating: self.rating!, releaseDate: self.date!, id: self.id!)
-                        
+                        print(self.id)
                         
                         callBackArray.append(newMovie);
                         
@@ -118,6 +119,7 @@ class SearchResults{
         self.images = Array<String>()
         var movieExtras:MovieExtraData?
         self.genre = ""
+        var trailerArray: Array<String> = Array<String>()
         
         // Make the POST call and handle it in a completion handler
         session.dataTaskWithURL(url, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
@@ -136,7 +138,7 @@ class SearchResults{
                     
                     // Parse the JSON
                     let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                    
+                    //print(jsonDictionary)
                     //Get the genres
                     for d in jsonDictionary["genres"] as! [Dictionary<String, AnyObject>]
                     {
@@ -185,7 +187,23 @@ class SearchResults{
                        
                     }
                     
+                    //Get trailer
+                    let trailerDictionary = jsonDictionary["trailers"] as! Dictionary<String, AnyObject>
+                    print(trailerDictionary)
+                    for y in trailerDictionary["youtube"] as! [Dictionary<String, AnyObject>]
+                    {
+                        trailerArray.append(y["source"] as? String ?? "none")
+                        
+                    }
                     
+                    if(trailerArray.count == 0)
+                    {
+                        trailerArray.append("none")
+                    }
+                    
+                    self.trailer = "https://www.youtube.com/embed/\(trailerArray[0])"
+                    print(self.trailer)
+                    //Account for empty api returns
                     if(self.images?.count == 0)
                     {
                         self.images?.append("https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png")
@@ -196,7 +214,7 @@ class SearchResults{
                         self.mpaa = "Unr."
                     }
                     
-                    movieExtras = MovieExtraData(genre: self.genre!, runtime: self.runtime!, mpaa: self.mpaa!, images: self.images!)
+                    movieExtras = MovieExtraData(genre: self.genre!, runtime: self.runtime!, mpaa: self.mpaa!, images: self.images!, trailerLink:self.trailer!)
                     
                     
                 }
