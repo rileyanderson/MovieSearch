@@ -30,16 +30,35 @@ class SearchResults{
     var images:Array<String>?
     var trailer:String?
     
+    //Now Playing
+    //https://api.themoviedb.org/3/movie/now_playing?api_key=9220f93712a0d77085967f893da01eae
+    
+    //popular
+    //https://api.themoviedb.org/3/movie/popular?api_key=9220f93712a0d77085967f893da01eae
     
     
     
     
-    func getMovieData(search: String, callback:(Array<Movie>) -> ())
+    
+    func getMovieData(search: String, type:String, callback:(Array<Movie>) -> ())
     {
         let searchSpaceFree:String = search.stringByReplacingOccurrencesOfString(" ", withString: "%20")
-        let postEndpoint: String = "https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&query=\(searchSpaceFree)"
+        var query = ""
+        if(type == "Search")
+        {
+            query = "https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&query=\(searchSpaceFree)"
+        }
+        else if(type == "InTheatres")
+        {
+            query = "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)"
+        }
+        else if(type == "Popular")
+        {
+            query = "https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)"
+        }
+        
         let session = NSURLSession.sharedSession()
-        let url = NSURL(string: postEndpoint)!
+        let url = NSURL(string: query)!
         var callBackArray  = Array<Movie>()
         
         // Make the POST call and handle it in a completion handler

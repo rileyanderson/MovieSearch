@@ -48,7 +48,10 @@ class MovieDetailView: UIView
                 
                 //var link = responseObject.trailer
                 self.trailer.allowsInlineMediaPlayback = true
-                self.trailer.loadHTMLString("<iframe width=\"\(self.trailer.frame.width - 15)\" height=\"\(self.trailer.frame.height)\" src=\"\(responseObject.trailerLink)?&playsinline=1\" frameborder=\"0\" allowfullscreen></iframe>", baseURL: nil)
+                self.trailer.loadHTMLString("<iframe width=\"\(self.trailer.frame.width - 15)\" height=\"\(self.trailer.frame.height)\" src=\"\(responseObject.trailerLink)?&playsinline=1\"></iframe>", baseURL: nil)
+                self.trailer.scrollView.scrollEnabled = false
+                self.trailer.opaque = false
+                self.trailer.backgroundColor = UIColor.clearColor()
                 
             })
         

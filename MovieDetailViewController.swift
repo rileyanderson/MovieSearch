@@ -19,10 +19,13 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
     var search:SearchResults = SearchResults()
     var images:Array<String> = Array<String>()
     
+
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        navigationController?.navigationBar.barTintColor = UIColor.blackColor()
+        navigationController?.navigationBar.translucent = true
         search.getMoreData(movie){responseObject in
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
