@@ -58,12 +58,20 @@ class MovieDetailView: UIView
     
     func loadTitle(movie:Movie)
     {
-        let index = movie.releaseDate.rangeOfString("-", options: .BackwardsSearch)?.startIndex
-        let movieYearDay = movie.releaseDate.substringToIndex(index!)
-        
-        let index2 = movieYearDay.rangeOfString("-", options: .BackwardsSearch)?.startIndex
-        let movieYear = movieYearDay.substringToIndex(index2!)
-        title.text = "\(movie.title) (\(movieYear))"
+        var movieYear:String?
+        if(movie.releaseDate == "")
+        {
+            movieYear = "-"
+        }
+        else
+        {
+            let index = movie.releaseDate.rangeOfString("-", options: .BackwardsSearch)?.startIndex
+            let movieYearDay = movie.releaseDate.substringToIndex(index!)
+            
+            let index2 = movieYearDay.rangeOfString("-", options: .BackwardsSearch)?.startIndex
+            movieYear = movieYearDay.substringToIndex(index2!)
+        }
+        title.text = "\(movie.title) (\(movieYear!))"
         
         desc.text = movie.description
         desc.sizeToFit()

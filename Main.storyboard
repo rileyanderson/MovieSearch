@@ -121,7 +121,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="EaS-jS-VVV">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="5SU-CD-FT4"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="5SU-CD-FT4"/>
                         <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" id="lHd-bs-mbA">
                             <rect key="frame" x="180" y="7" width="240" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

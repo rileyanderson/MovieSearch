@@ -24,15 +24,22 @@ class TableCell: UITableViewCell
         title.text = movie.title
         desc.text = movie.description
         userRating.text =  "\u{2B50} \(movie.rating) / 10"
+        var movieYear:String?
+        if(movie.releaseDate == "")
+        {
+            movieYear = "-"
+        }
+        else
+        {
         let index = movie.releaseDate.rangeOfString("-", options: .BackwardsSearch)?.startIndex
         let movieYearDay = movie.releaseDate.substringToIndex(index!)
         
         let index2 = movieYearDay.rangeOfString("-", options: .BackwardsSearch)?.startIndex
-        let movieYear = movieYearDay.substringToIndex(index2!)
-        
+        movieYear = movieYearDay.substringToIndex(index2!)
+        }
         
         //print(movieYear)
-        year.text = "(\(movieYear))"
+        year.text = "(\(movieYear!))"
 
         let URL = NSURL(string: movie.poster)
 
