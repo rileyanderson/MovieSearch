@@ -30,11 +30,7 @@ class SearchResults{
     var images:Array<String>?
     var trailer:String?
     
-    //Now Playing
-    //https://api.themoviedb.org/3/movie/now_playing?api_key=9220f93712a0d77085967f893da01eae
-    
-    //popular
-    //https://api.themoviedb.org/3/movie/popular?api_key=9220f93712a0d77085967f893da01eae
+
     
     
     func getMovieData(search: String, type:String, callback:(Array<Movie>) -> ())
@@ -98,7 +94,7 @@ class SearchResults{
                         var posterString:String
                         if self.posterURL == "nil"
                         {
-                            posterString = "https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png"
+                            posterString = "http://www.reelviews.net/resources/img/default_poster.jpg"
                         }
                         else
                         {
@@ -110,7 +106,7 @@ class SearchResults{
                         var backDropPath:String
                         if self.backdropURL == "nil"
                         {
-                            backDropPath = "https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png"
+                            backDropPath = "http://www.reelviews.net/resources/img/default_poster.jpg"
                         }
                         else
                         {
@@ -199,7 +195,7 @@ class SearchResults{
                         
                         if b["file_path"] as? String ?? "nil" == "nil"
                         {
-                            imageString = "https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png"
+                            imageString = "http://www.reelviews.net/resources/img/default_poster.jpg"
                         }
                         else
                         {
@@ -231,7 +227,7 @@ class SearchResults{
                     //Account for empty api returns
                     if(self.images?.count == 0)
                     {
-                        self.images?.append("https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png")
+                        self.images?.append("http://www.reelviews.net/resources/img/default_poster.jpg")
                     }
                     
                     if self.mpaa == nil
@@ -291,7 +287,7 @@ class SearchResults{
                         var posterString:String
                         if self.posterURL == "nil"
                         {
-                            posterString = "https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png"
+                            posterString = "http://www.reelviews.net/resources/img/default_poster.jpg"
                         }
                         else
                         {
@@ -303,7 +299,7 @@ class SearchResults{
                         var backDropPath:String
                         if self.backdropURL == "nil"
                         {
-                            backDropPath = "https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png"
+                            backDropPath = "http://www.reelviews.net/resources/img/default_poster.jpg"
                         }
                         else
                         {

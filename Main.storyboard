@@ -38,7 +38,7 @@
                                                         <constraint firstAttribute="width" constant="350" id="AgB-n2-1Hv"/>
                                                         <constraint firstAttribute="height" constant="98" id="iJS-vd-LKN"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
@@ -63,7 +63,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="KdN-Md-poS"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>

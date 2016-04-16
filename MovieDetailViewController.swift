@@ -12,7 +12,7 @@ import UIKit
 
 protocol UpDatedFavoritesDelegate
 {
-    func newFavorites(favoriteArrayId:Set<Int>)
+    func newFavorites(favoriteArrayId:Set<Int>, deleted:Bool)
 }
 
 class MovieDetailViewController : UIViewController, UICollectionViewDataSource
@@ -30,7 +30,12 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
     var isFavoriteMovie:Bool?
     //In button action
     let button = UIButton()
+    var wasDeleted:Bool = false
     
+    override func viewWillAppear(animated: Bool)
+    {
+        
+    }
     
     override func viewDidLoad()
     {
@@ -69,7 +74,7 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
             })
         }
         
-        delegate.newFavorites(favoriteMovieIDSet)
+        delegate.newFavorites(favoriteMovieIDSet, deleted: wasDeleted)
         
     }
     
@@ -100,12 +105,14 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
         {
             favoriteMovieIDSet.remove(movie.id)
             isFavoriteMovie = false
+            wasDeleted = true
         }
         
         else
         {
             favoriteMovieIDSet.insert(movie.id)
             isFavoriteMovie = true
+            wasDeleted = false
         }
         
         self.viewDidLoad()

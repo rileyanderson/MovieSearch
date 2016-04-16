@@ -23,19 +23,33 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
     
     let defaults = NSUserDefaults.standardUserDefaults()
     
-    override func viewDidAppear(animated: Bool) {
-        tableView.reloadData()
-    }
+    var needToUpdateFavorites:Bool = false
+    
     override func viewWillAppear(animated: Bool)
     {
-        navigationController?.popoverPresentationController?.backgroundColor = UIColor.blackColor()
-        navigationController?.navigationBar.tintColor = UIColor.grayColor()
-        tableView.reloadData()
+        if needToUpdateFavorites == true
+        {
+            movie.getMovieFavorites(favoriteSetId){responseObject in
+                
+                self.arr = responseObject
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.tableView.reloadData()
+                })
+            }
+        }
+        
+        if let indexPath:NSIndexPath = self.tableView.indexPathForSelectedRow
+        {
+            
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
         
     }
     
     override func viewDidLoad()
     {
+        
+        
         self.favoriteSetId = Set(defaults.objectForKey("Favorites") as? Array<Int> ?? Array<Int>())
         
         navigationController?.popoverPresentationController?.backgroundColor = UIColor.blackColor()
@@ -78,6 +92,8 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
         return cell
         
     }
+    
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
@@ -130,9 +146,10 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
         
     }
     
-    func newFavorites(favoriteMovieSetId: Set<Int>)
+    func newFavorites(favoriteMovieSetId: Set<Int>, deleted:Bool)
     {
         self.favoriteSetId = favoriteMovieSetId
+        needToUpdateFavorites = deleted;
         let array = Array(favoriteSetId)
         defaults.setObject(array, forKey: "Favorites")
     }
@@ -167,7 +184,7 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
     
     func favoritesPressed()
     {
-
+        
         movie.getMovieFavorites(favoriteSetId){responseObject in
             
             self.arr = responseObject
@@ -190,7 +207,7 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
         
     }
     
-
+    
     
     
     

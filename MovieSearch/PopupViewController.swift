@@ -46,14 +46,14 @@ class PopupViewController: UIViewController
         
         delegate.favoritesPressed()
         self.dismissViewControllerAnimated(true, completion: nil)
-        popular.backgroundColor = UIColor.grayColor()
+        favorites.backgroundColor = UIColor.grayColor()
     }
     
     func InTheatersPressed()
     {
         delegate.inTheatersPressed()
         self.dismissViewControllerAnimated(true, completion: nil)
-        popular.backgroundColor = UIColor.grayColor()
+        inTheaters.backgroundColor = UIColor.grayColor()
     }
     
 
