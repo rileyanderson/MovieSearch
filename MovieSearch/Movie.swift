@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-let apiKey = "9220f93712a0d77085967f893da01eae"
-
 class Movie
 {
     
@@ -23,7 +21,7 @@ class Movie
     var id: Int
     
     
-  
+    
     
     //var poster:UIImage
     //var background: UIImage
@@ -61,4 +59,4 @@ class MovieExtraData
     
     
 }
-    
+

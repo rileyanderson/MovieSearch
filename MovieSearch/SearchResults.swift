@@ -37,9 +37,6 @@ class SearchResults{
     //https://api.themoviedb.org/3/movie/popular?api_key=9220f93712a0d77085967f893da01eae
     
     
-    
-    
-    
     func getMovieData(search: String, type:String, callback:(Array<Movie>) -> ())
     {
         let searchSpaceFree:String = search.stringByReplacingOccurrencesOfString(" ", withString: "%20")
@@ -56,6 +53,11 @@ class SearchResults{
         {
             query = "https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)"
         }
+        else if(type == "Favorites")
+        {
+            query = "https://api.themoviedb.org/3/movie/\(search)?api_key=\(apiKey)"
+            
+        }
         
         let session = NSURLSession.sharedSession()
         let url = NSURL(string: query)!
@@ -67,21 +69,24 @@ class SearchResults{
             guard let realResponse = response as? NSHTTPURLResponse where
                 realResponse.statusCode == 200 else
             {
-                    print("Not a 200 response")
-                    return
+                print("Not a 200 response")
+                return
             }
-          
+            
             // Read the JSON
             do {
                 if let _ = NSString(data:data!, encoding: NSUTF8StringEncoding)
                 {
                     
                     // Parse the JSON
+                    
+                    
+                    
                     let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
                     
                     for d in jsonDictionary["results"] as! [Dictionary<String, AnyObject>]
                     {
-                        // print(d)
+                       
                         self.title = d["original_title"] as? String ?? "nil"
                         self.description = d["overview"] as? String ?? "nil"
                         self.posterURL = d["poster_path"] as? String ?? "nil"
@@ -112,9 +117,9 @@ class SearchResults{
                             backDropPath = "http://image.tmdb.org/t/p/w500/\(self.backdropURL!)"
                             
                         }
-
+                        
                         let newMovie: Movie = Movie(title: self.title!, description: self.description!, poster: posterString, background: backDropPath, rating: self.rating!, releaseDate: self.date!, id: self.id!)
-                        print(self.id)
+                      
                         
                         callBackArray.append(newMovie);
                         
@@ -148,10 +153,10 @@ class SearchResults{
             guard let realResponse = response as? NSHTTPURLResponse where
                 realResponse.statusCode == 200 else
             {
-                    print("Not a 200 response")
-                    return
+                print("Not a 200 response")
+                return
             }
-
+            
             // Read the JSON
             do {
                 if let _ = NSString(data:data!, encoding: NSUTF8StringEncoding)
@@ -159,7 +164,6 @@ class SearchResults{
                     
                     // Parse the JSON
                     let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                    //print(jsonDictionary)
                     //Get the genres
                     for d in jsonDictionary["genres"] as! [Dictionary<String, AnyObject>]
                     {
@@ -180,9 +184,9 @@ class SearchResults{
                         if c["iso_3166_1"] as? String == "US"
                         {
                             self.mpaa = c["certification"] as? String ?? "unrated"
-                        
+                            
                         }
-
+                        
                     }
                     
                     //Get images
@@ -202,15 +206,15 @@ class SearchResults{
                             imageString = "http://image.tmdb.org/t/p/w500/\(b["file_path"] as! String)"
                             
                         }
-                       
+                        
                         self.images?.append(imageString)
-
-                       
+                        
+                        
                     }
                     
                     //Get trailer
                     let trailerDictionary = jsonDictionary["trailers"] as! Dictionary<String, AnyObject>
-                    print(trailerDictionary)
+    
                     for y in trailerDictionary["youtube"] as! [Dictionary<String, AnyObject>]
                     {
                         trailerArray.append(y["source"] as? String ?? "none")
@@ -223,13 +227,13 @@ class SearchResults{
                     }
                     
                     self.trailer = "https://www.youtube.com/embed/\(trailerArray[0])"
-                    print(self.trailer)
+          
                     //Account for empty api returns
                     if(self.images?.count == 0)
                     {
                         self.images?.append("https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png")
                     }
-
+                    
                     if self.mpaa == nil
                     {
                         self.mpaa = "Unr."
@@ -246,6 +250,83 @@ class SearchResults{
         }).resume()
         
     }
+    
+    
+    func getMovieFavorites(favorites:Set<Int>,  callback:(Array<Movie>) -> ())
+    {
+        var callBackArray  = Array<Movie>()
+        for fav in favorites
+        {
+            let query = "https://api.themoviedb.org/3/movie/\(fav)?api_key=\(apiKey)"
+            let session = NSURLSession.sharedSession()
+            let url = NSURL(string: query)!
+
+            // Make the POST call and handle it in a completion handler
+            session.dataTaskWithURL(url, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+                // Make sure we get an OK response
+                guard let realResponse = response as? NSHTTPURLResponse where
+                    realResponse.statusCode == 200 else
+                {
+                    print("Not a 200 response")
+                    return
+                }
+                
+                // Read the JSON
+                do {
+                    if let _ = NSString(data:data!, encoding: NSUTF8StringEncoding)
+                    {
+                        
+                        let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                        
+                        
+                        // print(d)
+                        self.title = jsonDictionary["original_title"] as? String ?? "nil"
+                        self.description = jsonDictionary["overview"] as? String ?? "nil"
+                        self.posterURL = jsonDictionary["poster_path"] as? String ?? "nil"
+                        self.backdropURL = jsonDictionary["backdrop_path"] as? String ?? "nil"
+                        self.id = jsonDictionary["id"] as? Int ?? -1
+                        self.rating = jsonDictionary["vote_average"] as? Float ?? -1
+                        self.date = jsonDictionary["release_date"] as? String ?? "nil"
+                        
+                        var posterString:String
+                        if self.posterURL == "nil"
+                        {
+                            posterString = "https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png"
+                        }
+                        else
+                        {
+                            posterString = "http://image.tmdb.org/t/p/w500/\(self.posterURL!)"
+                            
+                        }
+                        
+                        //http://image.tmdb.org/t/p/w500/tsKF46QfepjVQSkvtYGPn7IICTC.jpg
+                        var backDropPath:String
+                        if self.backdropURL == "nil"
+                        {
+                            backDropPath = "https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png"
+                        }
+                        else
+                        {
+                            backDropPath = "http://image.tmdb.org/t/p/w500/\(self.backdropURL!)"
+                            
+                        }
+                        
+                        let newMovie: Movie = Movie(title: self.title!, description: self.description!, poster: posterString, background: backDropPath, rating: self.rating!, releaseDate: self.date!, id: self.id!)
+                        
+                        callBackArray.append(newMovie);
+                        
+                        
+                    }
+                    callback(callBackArray)
+                } catch {
+                    print("bad things happened")
+                }
+            }).resume()
+        }
+        callback(callBackArray)
+        
+    }
+    
     
     
     

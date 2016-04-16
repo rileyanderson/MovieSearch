@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        
 //        window?.rootViewController = UINavigationController(rootViewController: MovieListVC)
 //        window?.makeKeyAndVisible()
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         return true
     }
 

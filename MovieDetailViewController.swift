@@ -10,22 +10,55 @@ import Foundation
 
 import UIKit
 
+protocol UpDatedFavoritesDelegate
+{
+    func newFavorites(favoriteArrayId:Set<Int>)
+}
+
 class MovieDetailViewController : UIViewController, UICollectionViewDataSource
 {
     @IBOutlet var movieDetailView: MovieDetailView!
-    
     @IBOutlet var extraImagesCollectionView: UICollectionView!
     var movie: Movie!
     var search:SearchResults = SearchResults()
     var images:Array<String> = Array<String>()
     
-
+    var delegate : UpDatedFavoritesDelegate! = nil
+    
+    var favoriteMovieIDSet:Set<Int>! = nil
+    
+    var isFavoriteMovie:Bool?
+    //In button action
+    let button = UIButton()
+    
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = UIColor.blackColor()
         navigationController?.navigationBar.translucent = true
+        
+        
+        button.frame = CGRectMake(0, 0, 51, 31)
+        
+        //Ceck If Movie is favorite
+        if(favoriteMovieIDSet.contains(movie.id))
+        {
+            isFavoriteMovie = true
+            button.setImage(UIImage(named: "favoriteYes.png"), forState: .Normal)
+        }
+        else
+        {
+            isFavoriteMovie = false
+            button.setImage(UIImage(named: "favorite.png"), forState: .Normal)
+        }
+        
+        
+        let barButton = UIBarButtonItem()
+        barButton.customView = button
+        self.navigationItem.rightBarButtonItem = barButton
+        button.addTarget(self, action: #selector(MovieDetailViewController.favoriteButton), forControlEvents: .TouchUpInside)
+        
         search.getMoreData(movie){responseObject in
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -35,16 +68,19 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
                 
             })
         }
+        
+        delegate.newFavorites(favoriteMovieIDSet)
+        
     }
     
     override func viewDidLayoutSubviews()
     {
-       movieDetailView.loadTitle(movie)
+        movieDetailView.loadTitle(movie)
     }
     
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
+        
         return self.images.count
     }
     
@@ -54,12 +90,26 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
         let URL = NSURL(string: self.images[indexPath.item])
         cell.extraImage.sd_setImageWithURL(URL, placeholderImage: UIImage(named: "placeholder.png"))
         
-        
         return cell
         
     }
-
     
+    func favoriteButton()
+    {
+        if favoriteMovieIDSet.contains(movie.id)
+        {
+            favoriteMovieIDSet.remove(movie.id)
+            isFavoriteMovie = false
+        }
+        
+        else
+        {
+            favoriteMovieIDSet.insert(movie.id)
+            isFavoriteMovie = true
+        }
+        
+        self.viewDidLoad()
+    }
     
     
 }

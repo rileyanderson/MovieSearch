@@ -22,7 +22,7 @@ class MovieDetailView: UIView
     @IBOutlet var trailer: UIWebView!
     
     var images:Array<String> = Array<String>()
-
+    
     
     var search:SearchResults = SearchResults()
     
@@ -31,7 +31,7 @@ class MovieDetailView: UIView
         
         let URL = NSURL(string: movie.background)
         background.sd_setImageWithURL(URL, placeholderImage: UIImage(named: "placeholder.png"))
-
+        
         
         let URLPoster = NSURL(string: movie.poster)
         poster.sd_setImageWithURL(URLPoster, placeholderImage: UIImage(named: "placeholder.png"))
@@ -48,13 +48,13 @@ class MovieDetailView: UIView
                 
                 //var link = responseObject.trailer
                 self.trailer.allowsInlineMediaPlayback = true
-                self.trailer.loadHTMLString("<iframe width=\"\(self.trailer.frame.width - 15)\" height=\"\(self.trailer.frame.height)\" src=\"\(responseObject.trailerLink)?&playsinline=1\"></iframe>", baseURL: nil)
+                self.trailer.loadHTMLString("<iframe width=\"\(self.trailer.frame.width - 20)\" height=\"\(self.trailer.frame.height)\" src=\"\(responseObject.trailerLink)?&playsinline=1\"></iframe>", baseURL: nil)
                 self.trailer.scrollView.scrollEnabled = false
                 self.trailer.opaque = false
                 self.trailer.backgroundColor = UIColor.clearColor()
                 
             })
-        
+            
         }
         
     }
@@ -81,7 +81,7 @@ class MovieDetailView: UIView
         title.sizeToFit()
     }
     
-
     
-
+    
+    
 }
