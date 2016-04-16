@@ -271,7 +271,7 @@
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="xhj-EZ-cEL" customClass="ExtraImageCell" customModule="MovieSearch" customModuleProvider="target">
-                                                        <rect key="frame" x="5" y="10.5" width="216" height="155"/>
+                                                        <rect key="frame" x="5" y="11" width="216" height="155"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                             <rect key="frame" x="0.0" y="0.0" width="216" height="155"/>
@@ -316,6 +316,10 @@
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F04-3a-1Mq">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="937"/>
+                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -324,6 +328,8 @@
                                             <constraint firstAttribute="bottom" secondItem="Qfj-di-bIz" secondAttribute="bottom" constant="109" id="6A2-RD-8RC"/>
                                             <constraint firstItem="29Z-wV-f8g" firstAttribute="leading" secondItem="Ozn-JY-fTi" secondAttribute="trailing" constant="2" id="9ON-pr-7x9"/>
                                             <constraint firstItem="smt-HX-GDg" firstAttribute="top" secondItem="Evy-Lu-5VX" secondAttribute="bottom" constant="1" id="BpB-ml-nZy"/>
+                                            <constraint firstItem="F04-3a-1Mq" firstAttribute="trailing" secondItem="zHJ-CN-8hm" secondAttribute="trailing" id="DZp-Kw-aWr"/>
+                                            <constraint firstItem="F04-3a-1Mq" firstAttribute="top" secondItem="zHJ-CN-8hm" secondAttribute="top" id="Dbq-jz-qAM"/>
                                             <constraint firstAttribute="height" constant="1000" id="F59-ef-d94"/>
                                             <constraint firstItem="5Pu-qm-u8j" firstAttribute="trailing" secondItem="ht4-Zx-T5u" secondAttribute="trailing" id="KZI-EL-QfU"/>
                                             <constraint firstItem="5Pu-qm-u8j" firstAttribute="top" secondItem="ht4-Zx-T5u" secondAttribute="bottom" constant="21" id="LdU-jc-b7E"/>
@@ -340,8 +346,10 @@
                                             <constraint firstItem="Ozn-JY-fTi" firstAttribute="leading" secondItem="zp3-sd-Poq" secondAttribute="leading" constant="5" id="c9r-Sb-jg7"/>
                                             <constraint firstItem="29Z-wV-f8g" firstAttribute="top" secondItem="nWA-sC-dm2" secondAttribute="bottom" constant="2" id="da1-OM-kJF"/>
                                             <constraint firstItem="nWA-sC-dm2" firstAttribute="top" secondItem="FGU-aR-b22" secondAttribute="bottom" constant="5" id="fUl-dK-EQt"/>
+                                            <constraint firstAttribute="bottom" secondItem="F04-3a-1Mq" secondAttribute="bottom" constant="63" id="fdA-8a-RXI"/>
                                             <constraint firstItem="FGU-aR-b22" firstAttribute="top" secondItem="zHJ-CN-8hm" secondAttribute="bottom" constant="8" symbolic="YES" id="iWb-8W-pyf"/>
                                             <constraint firstItem="29Z-wV-f8g" firstAttribute="firstBaseline" secondItem="Ozn-JY-fTi" secondAttribute="firstBaseline" id="jWn-iX-ntw"/>
+                                            <constraint firstItem="F04-3a-1Mq" firstAttribute="leading" secondItem="zHJ-CN-8hm" secondAttribute="leading" id="khO-xV-6kF"/>
                                             <constraint firstItem="5Pu-qm-u8j" firstAttribute="trailing" secondItem="MEy-no-gtI" secondAttribute="trailing" id="mKP-eh-Qff"/>
                                             <constraint firstItem="Qfj-di-bIz" firstAttribute="top" secondItem="smt-HX-GDg" secondAttribute="bottom" constant="15" id="mrC-8U-xCj"/>
                                             <constraint firstItem="FGU-aR-b22" firstAttribute="leading" secondItem="zp3-sd-Poq" secondAttribute="leadingMargin" id="nRc-Ml-sHs"/>
@@ -386,6 +394,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1000"/>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="F04-3a-1Mq" id="Z6M-Uo-vrr"/>
                         <outlet property="extraImagesCollectionView" destination="smt-HX-GDg" id="ETY-7N-nfo"/>
                         <outlet property="movieDetailView" destination="7gj-mQ-xwK" id="vhG-zA-MpZ"/>
                     </connections>

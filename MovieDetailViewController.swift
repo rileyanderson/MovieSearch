@@ -23,7 +23,13 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
     var search:SearchResults = SearchResults()
     var images:Array<String> = Array<String>()
     
+    @IBOutlet weak var favoriteStatusText: UILabel!
+    @IBOutlet var favoriteStatusView: UIView!
+    
     var delegate : UpDatedFavoritesDelegate! = nil
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var activityIndicatorView: UIView!
     
     var favoriteMovieIDSet:Set<Int>! = nil
     
@@ -40,6 +46,7 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        showActivityIndicator()
         navigationController?.navigationBar.barTintColor = UIColor.blackColor()
         navigationController?.navigationBar.translucent = true
         
@@ -70,11 +77,12 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
                 self.images = responseObject.images
                 self.movieDetailView.loadData(self.movie)
                 self.extraImagesCollectionView.reloadData()
+                self.hideActivityIndicator()
                 
             })
         }
         
-        delegate.newFavorites(favoriteMovieIDSet, deleted: wasDeleted)
+        sendDelegate()
         
     }
     
@@ -106,6 +114,7 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
             favoriteMovieIDSet.remove(movie.id)
             isFavoriteMovie = false
             wasDeleted = true
+            button.setImage(UIImage(named: "favorite.png"), forState: .Normal)
         }
         
         else
@@ -113,9 +122,28 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
             favoriteMovieIDSet.insert(movie.id)
             isFavoriteMovie = true
             wasDeleted = false
+            button.setImage(UIImage(named: "favoriteYes.png"), forState: .Normal)
         }
-        
-        self.viewDidLoad()
+        sendDelegate()
+    }
+    
+    func showActivityIndicator()
+    {
+        UIView.animateWithDuration( 0.7, animations: {
+            self.activityIndicatorView.alpha = 1.0
+        })
+    }
+    
+    func hideActivityIndicator()
+    {
+        UIView.animateWithDuration( 0.7, animations: {
+            self.activityIndicatorView.alpha = 0.0
+        })
+    }
+    
+    func sendDelegate()
+    {
+       delegate.newFavorites(favoriteMovieIDSet, deleted: wasDeleted)
     }
     
     

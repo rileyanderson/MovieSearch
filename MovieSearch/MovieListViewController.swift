@@ -27,7 +27,7 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
     
     override func viewWillAppear(animated: Bool)
     {
-        if needToUpdateFavorites == true
+        if needToUpdateFavorites == true && queryLabel.text == "Favorites"
         {
             movie.getMovieFavorites(favoriteSetId){responseObject in
                 
@@ -45,7 +45,8 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
         }
         
     }
-    
+  
+
     override func viewDidLoad()
     {
         
