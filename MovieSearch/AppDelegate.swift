@@ -20,7 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        
 //        window?.rootViewController = UINavigationController(rootViewController: MovieListVC)
 //        window?.makeKeyAndVisible()
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        NSThread.sleepForTimeInterval(0.8)
+       
         return true
     }
 

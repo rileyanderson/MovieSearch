@@ -18,9 +18,11 @@ class TableCell: UITableViewCell
     @IBOutlet var poster: UIImageView!
     @IBOutlet var desc: UILabel!
     
+    @IBOutlet weak var loadingView: UIView!
     
     func updateCell(movie:Movie)
     {
+        showActivityIndicator()
         title.text = movie.title
         desc.text = movie.description
         userRating.text =  "\u{2B50} \(movie.rating) / 10"
@@ -45,6 +47,21 @@ class TableCell: UITableViewCell
         let URL = NSURL(string: movie.poster)
         
         poster.sd_setImageWithURL(URL, placeholderImage: UIImage(named: "placeholder.png"))
+        hideActivityIndicator()
+    }
+    
+    func showActivityIndicator()
+    {
+        UIView.animateWithDuration( 0.7, animations: {
+            self.loadingView.alpha = 1.0
+        })
+    }
+    
+    func hideActivityIndicator()
+    {
+        UIView.animateWithDuration( 0.7, animations: {
+            self.loadingView.alpha = 0.0
+        })
     }
     
     

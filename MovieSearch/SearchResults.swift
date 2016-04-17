@@ -324,7 +324,10 @@ class SearchResults{
     }
     
     
-    
+    func getMovieInfo(jsonDictionary: NSDictionary)
+    {
+        
+    }
     
     
     

@@ -20,7 +20,8 @@ class MovieDetailView: UIView
     @IBOutlet var desc: UILabel!
     @IBOutlet var genre: UILabel!
     @IBOutlet var trailer: UIWebView!
-    
+    @IBOutlet var loadingView: UIView!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     var images:Array<String> = Array<String>()
     
     
@@ -28,6 +29,7 @@ class MovieDetailView: UIView
     
     func loadData(movie:Movie)
     {
+        showActivityIndicator()
         
         let URL = NSURL(string: movie.background)
         background.sd_setImageWithURL(URL, placeholderImage: UIImage(named: "placeholder.png"))
@@ -38,29 +40,6 @@ class MovieDetailView: UIView
         
         rating.text =  "\u{2B50} \(movie.rating) / 10"
         
-        search.getMoreData(movie){responseObject in
-            
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.genre.text = responseObject.genre
-                self.runningTime.text = "\(responseObject.runtime) min"
-                self.mpaa.text = "\(responseObject.mpaa) |"
-                self.images = responseObject.images
-                
-                //var link = responseObject.trailer
-                self.trailer.allowsInlineMediaPlayback = true
-                self.trailer.loadHTMLString("<iframe width=\"\(self.trailer.frame.width - 20)\" height=\"\(self.trailer.frame.height)\" src=\"\(responseObject.trailerLink)?&playsinline=1\"></iframe>", baseURL: nil)
-                self.trailer.scrollView.scrollEnabled = false
-                self.trailer.opaque = false
-                self.trailer.backgroundColor = UIColor.clearColor()
-                
-            })
-            
-        }
-        
-    }
-    
-    func loadTitle(movie:Movie)
-    {
         var movieYear:String?
         if(movie.releaseDate == "")
         {
@@ -79,7 +58,48 @@ class MovieDetailView: UIView
         desc.text = movie.description
         desc.sizeToFit()
         title.sizeToFit()
+        
+        search.getMoreData(movie){responseObject in
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.activityIndicator.startAnimating()
+                self.genre.text = responseObject.genre
+                self.runningTime.text = "\(responseObject.runtime) min"
+                self.mpaa.text = "\(responseObject.mpaa) |"
+                self.images = responseObject.images
+                
+                //var link = responseObject.trailer
+                self.trailer.allowsInlineMediaPlayback = true
+                self.trailer.loadHTMLString("<iframe width=\"\(self.trailer.frame.width - 20)\" height=\"\(self.trailer.frame.height)\" src=\"\(responseObject.trailerLink)?&playsinline=1\"></iframe>", baseURL: nil)
+                self.trailer.scrollView.scrollEnabled = false
+                self.trailer.opaque = false
+                self.trailer.backgroundColor = UIColor.clearColor()
+    
+                
+            })
+            
+        }
+        hideActivityIndicator()
     }
+    
+    func showActivityIndicator()
+    {
+        
+        UIView.animateWithDuration( 0.7, animations: {
+            self.loadingView.alpha = 1.0
+        })
+    }
+    
+    func hideActivityIndicator()
+    {
+        
+        UIView.animateWithDuration(0.7, animations: {
+            self.loadingView.alpha = 0.0
+        })
+        //self.activityIndicator.alpha = 0.0
+    }
+    
+
     
     
     

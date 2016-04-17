@@ -34,6 +34,7 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
     var favoriteMovieIDSet:Set<Int>! = nil
     
     var isFavoriteMovie:Bool?
+    
     //In button action
     let button = UIButton()
     var wasDeleted:Bool = false
@@ -46,7 +47,7 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        showActivityIndicator()
+        //showActivityIndicator()
         navigationController?.navigationBar.barTintColor = UIColor.blackColor()
         navigationController?.navigationBar.translucent = true
         
@@ -70,6 +71,7 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
         barButton.customView = button
         self.navigationItem.rightBarButtonItem = barButton
         button.addTarget(self, action: #selector(MovieDetailViewController.favoriteButton), forControlEvents: .TouchUpInside)
+        navigationController?.navigationBar.tintColor = UIColor.grayColor()
         
         search.getMoreData(movie){responseObject in
             
@@ -77,21 +79,15 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
                 self.images = responseObject.images
                 self.movieDetailView.loadData(self.movie)
                 self.extraImagesCollectionView.reloadData()
-                self.hideActivityIndicator()
+                
                 
             })
         }
-        
         sendDelegate()
         
     }
     
-    override func viewDidLayoutSubviews()
-    {
-        movieDetailView.loadTitle(movie)
-    }
-    
-    
+
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return self.images.count
@@ -127,19 +123,6 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
         sendDelegate()
     }
     
-    func showActivityIndicator()
-    {
-        UIView.animateWithDuration( 0.7, animations: {
-            self.activityIndicatorView.alpha = 1.0
-        })
-    }
-    
-    func hideActivityIndicator()
-    {
-        UIView.animateWithDuration( 0.7, animations: {
-            self.activityIndicatorView.alpha = 0.0
-        })
-    }
     
     func sendDelegate()
     {

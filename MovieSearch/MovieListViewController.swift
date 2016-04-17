@@ -122,6 +122,7 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
         
     }
     
+    
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.None
     }
@@ -166,7 +167,7 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
             })
         }
         queryLabel.text = "Popular"
-        queryLabel.textColor = UIColor.whiteColor()
+       
     }
     
     func inTheatersPressed()
@@ -180,7 +181,7 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
             })
         }
         queryLabel.text = "In Theaters"
-        queryLabel.textColor = UIColor.whiteColor()
+        
     }
     
     func favoritesPressed()
@@ -193,18 +194,7 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
                 self.tableView.reloadData()
             })
         }
-        
-        if favoriteSetId.count == 0
-        {
-            queryLabel.text = "No Favorites Yet!"
-            queryLabel.textColor = UIColor.redColor()
-        }
-        else
-        {
-            queryLabel.text = "Favorites"
-            queryLabel.textColor = UIColor.whiteColor()
-        }
-        
+        queryLabel.text = "Favorites"
         
     }
     
