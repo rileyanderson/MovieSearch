@@ -114,15 +114,15 @@
 		3F80FAB61CC407D900EACC98 /* menuBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuBar@2x.png"; sourceTree = "<group>"; };
 		3F80FAB91CC42A9700EACC98 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		3F80FABA1CC42A9700EACC98 /* icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@3x.png"; sourceTree = "<group>"; };
-		3F829FBA1CBC6B48009BB70C /* MovieSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F829FBA1CBC6B48009BB70C /* Movie Phone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Movie Phone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F829FBD1CBC6B48009BB70C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MovieSearch/AppDelegate.swift; sourceTree = "<group>"; };
 		3F829FBF1CBC6B48009BB70C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = MovieSearch/ViewController.swift; sourceTree = "<group>"; };
 		3F829FC41CBC6B48009BB70C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F829FC91CBC6B48009BB70C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3F829FCE1CBC6B48009BB70C /* MovieSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F829FCE1CBC6B48009BB70C /* Movie Phone.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Movie Phone.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F829FD21CBC6B48009BB70C /* MovieSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchTests.swift; sourceTree = "<group>"; };
 		3F829FD41CBC6B48009BB70C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3F829FD91CBC6B48009BB70C /* MovieSearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieSearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F829FD91CBC6B48009BB70C /* Movie Phone.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Movie Phone.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F829FDD1CBC6B48009BB70C /* MovieSearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchUITests.swift; sourceTree = "<group>"; };
 		3F829FDF1CBC6B48009BB70C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F829FEB1CBC6BDB009BB70C /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
@@ -213,9 +213,9 @@
 				3F08273B1CBDC75C006F8D82 /* placeholder.png */,
 				3F0826F11CBDBDB8006F8D82 /* SDWebImage */,
 				3F829FF31CBD3F05009BB70C /* Default-568h@2x.png */,
-				3F829FBC1CBC6B48009BB70C /* MovieSearch */,
-				3F829FD11CBC6B48009BB70C /* MovieSearchTests */,
-				3F829FDC1CBC6B48009BB70C /* MovieSearchUITests */,
+				3F829FBC1CBC6B48009BB70C /* MoviePhone */,
+				3F829FD11CBC6B48009BB70C /* MoviePhoneTests */,
+				3F829FDC1CBC6B48009BB70C /* MoviePhoneUITests */,
 				3F829FBB1CBC6B48009BB70C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -223,14 +223,14 @@
 		3F829FBB1CBC6B48009BB70C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3F829FBA1CBC6B48009BB70C /* MovieSearch.app */,
-				3F829FCE1CBC6B48009BB70C /* MovieSearchTests.xctest */,
-				3F829FD91CBC6B48009BB70C /* MovieSearchUITests.xctest */,
+				3F829FBA1CBC6B48009BB70C /* Movie Phone.app */,
+				3F829FCE1CBC6B48009BB70C /* Movie Phone.xctest */,
+				3F829FD91CBC6B48009BB70C /* Movie Phone.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3F829FBC1CBC6B48009BB70C /* MovieSearch */ = {
+		3F829FBC1CBC6B48009BB70C /* MoviePhone */ = {
 			isa = PBXGroup;
 			children = (
 				3F80FAB91CC42A9700EACC98 /* icon@2x.png */,
@@ -248,24 +248,27 @@
 				3F829FC41CBC6B48009BB70C /* Assets.xcassets */,
 				3F829FC91CBC6B48009BB70C /* Info.plist */,
 			);
+			name = MoviePhone;
 			path = MovieSearch;
 			sourceTree = "<group>";
 		};
-		3F829FD11CBC6B48009BB70C /* MovieSearchTests */ = {
+		3F829FD11CBC6B48009BB70C /* MoviePhoneTests */ = {
 			isa = PBXGroup;
 			children = (
 				3F829FD21CBC6B48009BB70C /* MovieSearchTests.swift */,
 				3F829FD41CBC6B48009BB70C /* Info.plist */,
 			);
+			name = MoviePhoneTests;
 			path = MovieSearchTests;
 			sourceTree = "<group>";
 		};
-		3F829FDC1CBC6B48009BB70C /* MovieSearchUITests */ = {
+		3F829FDC1CBC6B48009BB70C /* MoviePhoneUITests */ = {
 			isa = PBXGroup;
 			children = (
 				3F829FDD1CBC6B48009BB70C /* MovieSearchUITests.swift */,
 				3F829FDF1CBC6B48009BB70C /* Info.plist */,
 			);
+			name = MoviePhoneUITests;
 			path = MovieSearchUITests;
 			sourceTree = "<group>";
 		};
@@ -301,9 +304,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3F829FB91CBC6B48009BB70C /* MovieSearch */ = {
+		3F829FB91CBC6B48009BB70C /* Movie Phone */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3F829FE21CBC6B48009BB70C /* Build configuration list for PBXNativeTarget "MovieSearch" */;
+			buildConfigurationList = 3F829FE21CBC6B48009BB70C /* Build configuration list for PBXNativeTarget "Movie Phone" */;
 			buildPhases = (
 				3F829FB61CBC6B48009BB70C /* Sources */,
 				3F829FB71CBC6B48009BB70C /* Frameworks */,
@@ -313,14 +316,14 @@
 			);
 			dependencies = (
 			);
-			name = MovieSearch;
+			name = "Movie Phone";
 			productName = MovieSearch;
-			productReference = 3F829FBA1CBC6B48009BB70C /* MovieSearch.app */;
+			productReference = 3F829FBA1CBC6B48009BB70C /* Movie Phone.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3F829FCD1CBC6B48009BB70C /* MovieSearchTests */ = {
+		3F829FCD1CBC6B48009BB70C /* Movie PhoneTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3F829FE51CBC6B48009BB70C /* Build configuration list for PBXNativeTarget "MovieSearchTests" */;
+			buildConfigurationList = 3F829FE51CBC6B48009BB70C /* Build configuration list for PBXNativeTarget "Movie PhoneTests" */;
 			buildPhases = (
 				3F829FCA1CBC6B48009BB70C /* Sources */,
 				3F829FCB1CBC6B48009BB70C /* Frameworks */,
@@ -331,14 +334,14 @@
 			dependencies = (
 				3F829FD01CBC6B48009BB70C /* PBXTargetDependency */,
 			);
-			name = MovieSearchTests;
+			name = "Movie PhoneTests";
 			productName = MovieSearchTests;
-			productReference = 3F829FCE1CBC6B48009BB70C /* MovieSearchTests.xctest */;
+			productReference = 3F829FCE1CBC6B48009BB70C /* Movie Phone.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		3F829FD81CBC6B48009BB70C /* MovieSearchUITests */ = {
+		3F829FD81CBC6B48009BB70C /* Movie PhoneUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3F829FE81CBC6B48009BB70C /* Build configuration list for PBXNativeTarget "MovieSearchUITests" */;
+			buildConfigurationList = 3F829FE81CBC6B48009BB70C /* Build configuration list for PBXNativeTarget "Movie PhoneUITests" */;
 			buildPhases = (
 				3F829FD51CBC6B48009BB70C /* Sources */,
 				3F829FD61CBC6B48009BB70C /* Frameworks */,
@@ -349,9 +352,9 @@
 			dependencies = (
 				3F829FDB1CBC6B48009BB70C /* PBXTargetDependency */,
 			);
-			name = MovieSearchUITests;
+			name = "Movie PhoneUITests";
 			productName = MovieSearchUITests;
-			productReference = 3F829FD91CBC6B48009BB70C /* MovieSearchUITests.xctest */;
+			productReference = 3F829FD91CBC6B48009BB70C /* Movie Phone.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -393,9 +396,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3F829FB91CBC6B48009BB70C /* MovieSearch */,
-				3F829FCD1CBC6B48009BB70C /* MovieSearchTests */,
-				3F829FD81CBC6B48009BB70C /* MovieSearchUITests */,
+				3F829FB91CBC6B48009BB70C /* Movie Phone */,
+				3F829FCD1CBC6B48009BB70C /* Movie PhoneTests */,
+				3F829FD81CBC6B48009BB70C /* Movie PhoneUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -493,12 +496,12 @@
 /* Begin PBXTargetDependency section */
 		3F829FD01CBC6B48009BB70C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3F829FB91CBC6B48009BB70C /* MovieSearch */;
+			target = 3F829FB91CBC6B48009BB70C /* Movie Phone */;
 			targetProxy = 3F829FCF1CBC6B48009BB70C /* PBXContainerItemProxy */;
 		};
 		3F829FDB1CBC6B48009BB70C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3F829FB91CBC6B48009BB70C /* MovieSearch */;
+			target = 3F829FB91CBC6B48009BB70C /* Movie Phone */;
 			targetProxy = 3F829FDA1CBC6B48009BB70C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -603,7 +606,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.self.MovieSearch;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Movie Phone";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SDWebImage/MovieSearch-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -627,7 +630,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.self.MovieSearch;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Movie Phone";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SDWebImage/MovieSearch-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -641,8 +644,8 @@
 				INFOPLIST_FILE = MovieSearchTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.self.MovieSearchTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieSearch.app/MovieSearch";
+				PRODUCT_NAME = "Movie Phone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Movie Phone.app/Movie Phone";
 			};
 			name = Debug;
 		};
@@ -653,8 +656,8 @@
 				INFOPLIST_FILE = MovieSearchTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.self.MovieSearchTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieSearch.app/MovieSearch";
+				PRODUCT_NAME = "Movie Phone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Movie Phone.app/Movie Phone";
 			};
 			name = Release;
 		};
@@ -664,7 +667,7 @@
 				INFOPLIST_FILE = MovieSearchUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.self.MovieSearchUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Movie Phone";
 				TEST_TARGET_NAME = MovieSearch;
 				USES_XCTRUNNER = YES;
 			};
@@ -676,7 +679,7 @@
 				INFOPLIST_FILE = MovieSearchUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.self.MovieSearchUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Movie Phone";
 				TEST_TARGET_NAME = MovieSearch;
 				USES_XCTRUNNER = YES;
 			};
@@ -694,7 +697,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3F829FE21CBC6B48009BB70C /* Build configuration list for PBXNativeTarget "MovieSearch" */ = {
+		3F829FE21CBC6B48009BB70C /* Build configuration list for PBXNativeTarget "Movie Phone" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3F829FE31CBC6B48009BB70C /* Debug */,
@@ -703,7 +706,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3F829FE51CBC6B48009BB70C /* Build configuration list for PBXNativeTarget "MovieSearchTests" */ = {
+		3F829FE51CBC6B48009BB70C /* Build configuration list for PBXNativeTarget "Movie PhoneTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3F829FE61CBC6B48009BB70C /* Debug */,
@@ -712,7 +715,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3F829FE81CBC6B48009BB70C /* Build configuration list for PBXNativeTarget "MovieSearchUITests" */ = {
+		3F829FE81CBC6B48009BB70C /* Build configuration list for PBXNativeTarget "Movie PhoneUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3F829FE91CBC6B48009BB70C /* Debug */,

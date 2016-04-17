@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3F829FB91CBC6B48009BB70C"
-               BuildableName = "MovieSearch.app"
-               BlueprintName = "MovieSearch"
+               BuildableName = "Movie Phone.app"
+               BlueprintName = "Movie Phone"
                ReferencedContainer = "container:Movie Phone.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3F829FCD1CBC6B48009BB70C"
-               BuildableName = "MovieSearchTests.xctest"
-               BlueprintName = "MovieSearchTests"
+               BuildableName = "Movie Phone.xctest"
+               BlueprintName = "Movie PhoneTests"
                ReferencedContainer = "container:Movie Phone.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,8 +43,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3F829FD81CBC6B48009BB70C"
-               BuildableName = "MovieSearchUITests.xctest"
-               BlueprintName = "MovieSearchUITests"
+               BuildableName = "Movie Phone.xctest"
+               BlueprintName = "Movie PhoneUITests"
                ReferencedContainer = "container:Movie Phone.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -53,8 +53,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3F829FB91CBC6B48009BB70C"
-            BuildableName = "MovieSearch.app"
-            BlueprintName = "MovieSearch"
+            BuildableName = "Movie Phone.app"
+            BlueprintName = "Movie Phone"
             ReferencedContainer = "container:Movie Phone.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -76,8 +76,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3F829FB91CBC6B48009BB70C"
-            BuildableName = "MovieSearch.app"
-            BlueprintName = "MovieSearch"
+            BuildableName = "Movie Phone.app"
+            BlueprintName = "Movie Phone"
             ReferencedContainer = "container:Movie Phone.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -95,8 +95,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3F829FB91CBC6B48009BB70C"
-            BuildableName = "MovieSearch.app"
-            BlueprintName = "MovieSearch"
+            BuildableName = "Movie Phone.app"
+            BlueprintName = "Movie Phone"
             ReferencedContainer = "container:Movie Phone.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
