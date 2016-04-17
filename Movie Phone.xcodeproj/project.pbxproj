@@ -32,6 +32,8 @@
 		3F80FAB41CC407CD00EACC98 /* MoviePhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F80FAB31CC407CD00EACC98 /* MoviePhone.png */; };
 		3F80FAB71CC407D900EACC98 /* menuBar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F80FAB51CC407D900EACC98 /* menuBar@3x.png */; };
 		3F80FAB81CC407D900EACC98 /* menuBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F80FAB61CC407D900EACC98 /* menuBar@2x.png */; };
+		3F80FABB1CC42A9700EACC98 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F80FAB91CC42A9700EACC98 /* icon@2x.png */; };
+		3F80FABC1CC42A9700EACC98 /* icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F80FABA1CC42A9700EACC98 /* icon@3x.png */; };
 		3F829FBE1CBC6B48009BB70C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F829FBD1CBC6B48009BB70C /* AppDelegate.swift */; };
 		3F829FC01CBC6B48009BB70C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F829FBF1CBC6B48009BB70C /* ViewController.swift */; };
 		3F829FC51CBC6B48009BB70C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F829FC41CBC6B48009BB70C /* Assets.xcassets */; };
@@ -110,6 +112,8 @@
 		3F80FAB31CC407CD00EACC98 /* MoviePhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MoviePhone.png; sourceTree = "<group>"; };
 		3F80FAB51CC407D900EACC98 /* menuBar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuBar@3x.png"; sourceTree = "<group>"; };
 		3F80FAB61CC407D900EACC98 /* menuBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuBar@2x.png"; sourceTree = "<group>"; };
+		3F80FAB91CC42A9700EACC98 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		3F80FABA1CC42A9700EACC98 /* icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@3x.png"; sourceTree = "<group>"; };
 		3F829FBA1CBC6B48009BB70C /* MovieSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F829FBD1CBC6B48009BB70C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MovieSearch/AppDelegate.swift; sourceTree = "<group>"; };
 		3F829FBF1CBC6B48009BB70C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = MovieSearch/ViewController.swift; sourceTree = "<group>"; };
@@ -229,6 +233,8 @@
 		3F829FBC1CBC6B48009BB70C /* MovieSearch */ = {
 			isa = PBXGroup;
 			children = (
+				3F80FAB91CC42A9700EACC98 /* icon@2x.png */,
+				3F80FABA1CC42A9700EACC98 /* icon@3x.png */,
 				3F80FAB51CC407D900EACC98 /* menuBar@3x.png */,
 				3F80FAB61CC407D900EACC98 /* menuBar@2x.png */,
 				3F80FAB31CC407CD00EACC98 /* MoviePhone.png */,
@@ -374,7 +380,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3F829FB51CBC6B48009BB70C /* Build configuration list for PBXProject "MovieSearch" */;
+			buildConfigurationList = 3F829FB51CBC6B48009BB70C /* Build configuration list for PBXProject "Movie Phone" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -401,11 +407,13 @@
 			files = (
 				3F829FC51CBC6B48009BB70C /* Assets.xcassets in Resources */,
 				3F80FAB41CC407CD00EACC98 /* MoviePhone.png in Resources */,
+				3F80FABB1CC42A9700EACC98 /* icon@2x.png in Resources */,
 				3F80FAB01CC407BC00EACC98 /* favoriteYes@3x.png in Resources */,
 				3F08273C1CBDC75C006F8D82 /* placeholder.png in Resources */,
 				3F80FAAE1CC407B400EACC98 /* favoriteYes@2x.png in Resources */,
 				3F80FAB81CC407D900EACC98 /* menuBar@2x.png in Resources */,
 				3F80FAAC1CC4079800EACC98 /* favorite@2x.png in Resources */,
+				3F80FABC1CC42A9700EACC98 /* icon@3x.png in Resources */,
 				3F80FAB21CC407C300EACC98 /* favorite@3x.png in Resources */,
 				3F829FF41CBD3F05009BB70C /* Default-568h@2x.png in Resources */,
 				3FEB24101CBDFFC100377C67 /* LaunchScreen.storyboard in Resources */,
@@ -584,6 +592,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -594,6 +604,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.self.MovieSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SDWebImage/MovieSearch-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -605,6 +616,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -615,6 +628,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.self.MovieSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SDWebImage/MovieSearch-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -671,7 +685,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3F829FB51CBC6B48009BB70C /* Build configuration list for PBXProject "MovieSearch" */ = {
+		3F829FB51CBC6B48009BB70C /* Build configuration list for PBXProject "Movie Phone" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3F829FE01CBC6B48009BB70C /* Debug */,

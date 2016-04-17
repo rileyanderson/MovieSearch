@@ -30,10 +30,19 @@ class SearchResults{
     var images:Array<String>?
     var trailer:String?
     
-
     
     
-    func getMovieData(search: String, type:String, callback:(Array<Movie>) -> ())
+    /*getListMovieData
+     *
+     *Gets the movie data (poster, title, description, rating, release date, background image) for the listView from tmdb, gets the information from the json and creates a
+     *Movie object for each resulting movie
+     *
+     *Parameters-search:The queried search when searching or the movie ID when getting user favorites
+     *           type: The type of query being performed. Either Search, In theaters, popular, or favorite
+     *
+     *Callback- Returns an array of the resulting movie objects
+     */
+    func getMainMovieData(search: String, type:String, callback:(Array<Movie>) -> ())
     {
         let searchSpaceFree:String = search.stringByReplacingOccurrencesOfString(" ", withString: "%20")
         var query = ""
@@ -76,63 +85,35 @@ class SearchResults{
                     
                     // Parse the JSON
                     
-                    
-                    
                     let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
                     
                     for d in jsonDictionary["results"] as! [Dictionary<String, AnyObject>]
                     {
-                       
-                        self.title = d["original_title"] as? String ?? "nil"
-                        self.description = d["overview"] as? String ?? "nil"
-                        self.posterURL = d["poster_path"] as? String ?? "nil"
-                        self.backdropURL = d["backdrop_path"] as? String ?? "nil"
-                        self.id = d["id"] as? Int ?? -1
-                        self.rating = d["vote_average"] as? Float ?? -1
-                        self.date = d["release_date"] as? String ?? "nil"
                         
-                        var posterString:String
-                        if self.posterURL == "nil"
-                        {
-                            posterString = "http://www.reelviews.net/resources/img/default_poster.jpg"
-                        }
-                        else
-                        {
-                            posterString = "http://image.tmdb.org/t/p/w500/\(self.posterURL!)"
-                            
-                        }
-                        
-                        //http://image.tmdb.org/t/p/w500/tsKF46QfepjVQSkvtYGPn7IICTC.jpg
-                        var backDropPath:String
-                        if self.backdropURL == "nil"
-                        {
-                            backDropPath = "http://www.reelviews.net/resources/img/default_poster.jpg"
-                        }
-                        else
-                        {
-                            backDropPath = "http://image.tmdb.org/t/p/w500/\(self.backdropURL!)"
-                            
-                        }
-                        
-                        let newMovie: Movie = Movie(title: self.title!, description: self.description!, poster: posterString, background: backDropPath, rating: self.rating!, releaseDate: self.date!, id: self.id!)
-                      
-                        
-                        callBackArray.append(newMovie);
+                        callBackArray.append(self.getListInfoFromJson(d));
                         
                     }
                 }
                 callback(callBackArray)
             } catch {
-                print("bad things happened")
+                print("Error parsing Json")
             }
         }).resume()
         
     }
     
     
-    ///////////////////////////////////////
     
-    func getMoreData(search: Movie, callback:(MovieExtraData) -> ())
+    /*getMoreDataForDetail
+     *
+     *Gets additional Movie data (images, trailer, mpaa, running time) from tmdb. Gets the information from
+     *the json and creats a MovieExtraData object
+     *
+     *Parameters-search:The Movie object of the movie requesting more data
+     *
+     *Callback- Returns an array of the resulting MovieExtraData objects
+     */
+    func getMoreDataForDetail(search: Movie, callback:(MovieExtraData) -> ())
     {
         
         let postEndpoint: String = "https://api.themoviedb.org/3/movie/\(search.id)?api_key=\(apiKey)&append_to_response=releases,trailers,images"
@@ -141,7 +122,7 @@ class SearchResults{
         self.images = Array<String>()
         var movieExtras:MovieExtraData?
         self.genre = ""
-        var trailerArray: Array<String> = Array<String>()
+        
         
         // Make the POST call and handle it in a completion handler
         session.dataTaskWithURL(url, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
@@ -160,94 +141,27 @@ class SearchResults{
                     
                     // Parse the JSON
                     let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                    //Get the genres
-                    for d in jsonDictionary["genres"] as! [Dictionary<String, AnyObject>]
-                    {
-                        
-                        self.genre! += "|\( d["name"] as? String ?? "nil")"
-                        
-                    }
-                    //Runtime
-                    self.runtime = jsonDictionary["runtime"] as? Int ?? -1
                     
-                    self.genre! += "|";
-                    
-                    //Get MPAA
-                    let releasesDictionary = jsonDictionary["releases"] as! Dictionary<String, AnyObject>
-                    
-                    for c in releasesDictionary["countries"] as! [Dictionary<String, AnyObject>]
-                    {
-                        if c["iso_3166_1"] as? String == "US"
-                        {
-                            self.mpaa = c["certification"] as? String ?? "unrated"
-                            
-                        }
-                        
-                    }
-                    
-                    //Get images
-                    let imagesDictionary = jsonDictionary["images"] as! Dictionary<String, AnyObject>
-                    
-                    for b in imagesDictionary["backdrops"] as! [Dictionary<String, AnyObject>]
-                    {
-                        
-                        var imageString:String = ""
-                        
-                        if b["file_path"] as? String ?? "nil" == "nil"
-                        {
-                            imageString = "http://www.reelviews.net/resources/img/default_poster.jpg"
-                        }
-                        else
-                        {
-                            imageString = "http://image.tmdb.org/t/p/w500/\(b["file_path"] as! String)"
-                            
-                        }
-                        
-                        self.images?.append(imageString)
-                        
-                        
-                    }
-                    
-                    //Get trailer
-                    let trailerDictionary = jsonDictionary["trailers"] as! Dictionary<String, AnyObject>
-    
-                    for y in trailerDictionary["youtube"] as! [Dictionary<String, AnyObject>]
-                    {
-                        trailerArray.append(y["source"] as? String ?? "none")
-                        
-                    }
-                    
-                    if(trailerArray.count == 0)
-                    {
-                        trailerArray.append("none")
-                    }
-                    
-                    self.trailer = "https://www.youtube.com/embed/\(trailerArray[0])"
-          
-                    //Account for empty api returns
-                    if(self.images?.count == 0)
-                    {
-                        self.images?.append("http://www.reelviews.net/resources/img/default_poster.jpg")
-                    }
-                    
-                    if self.mpaa == nil
-                    {
-                        self.mpaa = "Unr."
-                    }
-                    
-                    movieExtras = MovieExtraData(genre: self.genre!, runtime: self.runtime!, mpaa: self.mpaa!, images: self.images!, trailerLink:self.trailer!)
+                    movieExtras = self.getMoreMovieDataFromJson(jsonDictionary)
                     
                     
                 }
                 callback(movieExtras!)
             } catch {
-                print("bad things happened")
+                print("Error parsing Json")
             }
         }).resume()
         
     }
     
-    
+    /*getMovieFavorites
+     *
+     *Gets the list view information form the resulting Set of the users saved favorites. Queries the database by the movie ID
+     *
+     *Parameters-favorites:A set containing the movie IDs of the users favorite movies
+     *
+     *Callback- Returns an array of the resulting Movie objects
+     */
     func getMovieFavorites(favorites:Set<Int>,  callback:(Array<Movie>) -> ())
     {
         var callBackArray  = Array<Movie>()
@@ -256,7 +170,7 @@ class SearchResults{
             let query = "https://api.themoviedb.org/3/movie/\(fav)?api_key=\(apiKey)"
             let session = NSURLSession.sharedSession()
             let url = NSURL(string: query)!
-
+            
             // Make the POST call and handle it in a completion handler
             session.dataTaskWithURL(url, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
                 // Make sure we get an OK response
@@ -274,48 +188,13 @@ class SearchResults{
                         
                         let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
                         
-                        
-                        // print(d)
-                        self.title = jsonDictionary["original_title"] as? String ?? "nil"
-                        self.description = jsonDictionary["overview"] as? String ?? "nil"
-                        self.posterURL = jsonDictionary["poster_path"] as? String ?? "nil"
-                        self.backdropURL = jsonDictionary["backdrop_path"] as? String ?? "nil"
-                        self.id = jsonDictionary["id"] as? Int ?? -1
-                        self.rating = jsonDictionary["vote_average"] as? Float ?? -1
-                        self.date = jsonDictionary["release_date"] as? String ?? "nil"
-                        
-                        var posterString:String
-                        if self.posterURL == "nil"
-                        {
-                            posterString = "http://www.reelviews.net/resources/img/default_poster.jpg"
-                        }
-                        else
-                        {
-                            posterString = "http://image.tmdb.org/t/p/w500/\(self.posterURL!)"
-                            
-                        }
-                        
-                        //http://image.tmdb.org/t/p/w500/tsKF46QfepjVQSkvtYGPn7IICTC.jpg
-                        var backDropPath:String
-                        if self.backdropURL == "nil"
-                        {
-                            backDropPath = "http://www.reelviews.net/resources/img/default_poster.jpg"
-                        }
-                        else
-                        {
-                            backDropPath = "http://image.tmdb.org/t/p/w500/\(self.backdropURL!)"
-                            
-                        }
-                        
-                        let newMovie: Movie = Movie(title: self.title!, description: self.description!, poster: posterString, background: backDropPath, rating: self.rating!, releaseDate: self.date!, id: self.id!)
-                        
-                        callBackArray.append(newMovie);
+                        callBackArray.append(self.getListInfoFromJson(jsonDictionary));
                         
                         
                     }
                     callback(callBackArray)
                 } catch {
-                    print("bad things happened")
+                    print("Error parsing Json")
                 }
             }).resume()
         }
@@ -323,11 +202,147 @@ class SearchResults{
         
     }
     
-    
-    func getMovieInfo(jsonDictionary: NSDictionary)
+    /*getListInfoFromJson
+     *
+     *Helper method that reads the json and extracts the info necessary fo the ListView
+     *
+     *Parameters-d:Dictionary for the received json
+     *
+     *Return: Movie object
+     */
+    private func getListInfoFromJson(d:NSDictionary) -> Movie
     {
+        self.title = d["original_title"] as? String ?? "nil"
+        self.description = d["overview"] as? String ?? "nil"
+        self.posterURL = d["poster_path"] as? String ?? "nil"
+        self.backdropURL = d["backdrop_path"] as? String ?? "nil"
+        self.id = d["id"] as? Int ?? -1
+        self.rating = d["vote_average"] as? Float ?? -1
+        self.date = d["release_date"] as? String ?? "nil"
+        
+        var posterString:String
+        if self.posterURL == "nil"
+        {
+            posterString = "http://www.reelviews.net/resources/img/default_poster.jpg"
+        }
+        else
+        {
+            posterString = "http://image.tmdb.org/t/p/w500/\(self.posterURL!)"
+            
+        }
+        
+        //http://image.tmdb.org/t/p/w500/tsKF46QfepjVQSkvtYGPn7IICTC.jpg
+        var backDropPath:String
+        if self.backdropURL == "nil"
+        {
+            backDropPath = "http://www.reelviews.net/resources/img/default_poster.jpg"
+        }
+        else
+        {
+            backDropPath = "http://image.tmdb.org/t/p/w500/\(self.backdropURL!)"
+            
+        }
+        
+        let newMovie: Movie = Movie(title: self.title!, description: self.description!, poster: posterString, background: backDropPath, rating: self.rating!, releaseDate: self.date!, id: self.id!)
+        
+        return newMovie
+    }
+    
+    
+    /*getMoreMovieDataFromJson
+     *
+     *Helper method that reads the json and extracts the info necessary fo the Detail View
+     *
+     *Parameters-jsonDictionary:Dictionary for the received json
+     *
+     *Return: MovieExtraData object
+     */
+    private func getMoreMovieDataFromJson(jsonDictionary:NSDictionary) -> MovieExtraData
+    {
+        var trailerArray: Array<String> = Array<String>()
+        var movieExtras:MovieExtraData?
+        
+        //Get the genres
+        for d in jsonDictionary["genres"] as! [Dictionary<String, AnyObject>]
+        {
+            
+            self.genre! += "|\( d["name"] as? String ?? "nil")"
+            
+        }
+        //get the Runtime
+        self.runtime = jsonDictionary["runtime"] as? Int ?? -1
+        
+        self.genre! += "|";
+        
+        //Get the MPAA
+        let releasesDictionary = jsonDictionary["releases"] as! Dictionary<String, AnyObject>
+        
+        for c in releasesDictionary["countries"] as! [Dictionary<String, AnyObject>]
+        {
+            if c["iso_3166_1"] as? String == "US"
+            {
+                self.mpaa = c["certification"] as? String ?? "unrated"
+                
+            }
+            
+        }
+        
+        //Get the images
+        let imagesDictionary = jsonDictionary["images"] as! Dictionary<String, AnyObject>
+        
+        for b in imagesDictionary["backdrops"] as! [Dictionary<String, AnyObject>]
+        {
+            
+            var imageString:String = ""
+            
+            if b["file_path"] as? String ?? "nil" == "nil"
+            {
+                imageString = "http://www.reelviews.net/resources/img/default_poster.jpg"
+            }
+            else
+            {
+                imageString = "http://image.tmdb.org/t/p/w500/\(b["file_path"] as! String)"
+                
+            }
+            
+            self.images?.append(imageString)
+            
+            
+        }
+        
+        //Get trailer
+        let trailerDictionary = jsonDictionary["trailers"] as! Dictionary<String, AnyObject>
+        
+        for y in trailerDictionary["youtube"] as! [Dictionary<String, AnyObject>]
+        {
+            trailerArray.append(y["source"] as? String ?? "none")
+            
+        }
+        
+        if(trailerArray.count == 0)
+        {
+            trailerArray.append("none")
+        }
+        
+        self.trailer = "https://www.youtube.com/embed/\(trailerArray[0])"
+        
+        //Account for empty image returns
+        if(self.images?.count == 0)
+        {
+            self.images?.append("http://www.reelviews.net/resources/img/default_poster.jpg")
+        }
+        
+        if self.mpaa == nil
+        {
+            self.mpaa = "Unr."
+        }
+        
+        movieExtras = MovieExtraData(genre: self.genre!, runtime: self.runtime!, mpaa: self.mpaa!, images: self.images!, trailerLink:self.trailer!)
+        
+        return movieExtras!
         
     }
+    
     
     
     

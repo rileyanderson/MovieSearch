@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+
+/*Movie class
+ *
+ *Creates a movie object with the: title, description, poster, backgrond image, rating, release date, and id
+ */
 class Movie
 {
     
@@ -19,12 +24,6 @@ class Movie
     var rating: Float
     var releaseDate: String
     var id: Int
-    
-    
-    
-    
-    //var poster:UIImage
-    //var background: UIImage
     
     init(title: String, description:String, poster:String, background: String, rating:Float, releaseDate: String, id:Int)
     {
@@ -40,6 +39,10 @@ class Movie
     
 }
 
+/*MovieExtraData class
+ *
+ *Creates a movieExtraData object with the: genre, runtime, mpaa, images, and trailerLink
+ */
 class MovieExtraData
 {
     var genre:String

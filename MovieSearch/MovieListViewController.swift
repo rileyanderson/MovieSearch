@@ -11,33 +11,31 @@ import UIKit
 class MovieListViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate,UpDatedFavoritesDelegate,buttonPressedDelegate
 {
     @IBOutlet var tableView: UITableView!
-    
     @IBOutlet var queryLabel: UILabel!
     @IBOutlet var search: UITextField!
+    
     var movie: SearchResults = SearchResults()
-    
     var myMovies:SearchResults?
-    var arr = Array<Movie>()
-    
+    var resultingMovies = Array<Movie>()
     var favoriteSetId:Set<Int> = []
-    
     let defaults = NSUserDefaults.standardUserDefaults()
-    
     var needToUpdateFavorites:Bool = false
     
     override func viewWillAppear(animated: Bool)
     {
+        //Check if a favorite movie was deleted and the previos table view was "Favorites" If it is, update the view
         if needToUpdateFavorites == true && queryLabel.text == "Favorites"
         {
             movie.getMovieFavorites(favoriteSetId){responseObject in
                 
-                self.arr = responseObject
+                self.resultingMovies = responseObject
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.tableView.reloadData()
                 })
             }
         }
         
+        //Remove highlighted cell upon return
         if let indexPath:NSIndexPath = self.tableView.indexPathForSelectedRow
         {
             
@@ -45,12 +43,12 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
         }
         
     }
-  
-
+    
+    
     override func viewDidLoad()
     {
         
-        
+        //Get the device saved favorites set
         self.favoriteSetId = Set(defaults.objectForKey("Favorites") as? Array<Int> ?? Array<Int>())
         
         navigationController?.popoverPresentationController?.backgroundColor = UIColor.blackColor()
@@ -64,13 +62,11 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
         
         search.delegate = self
         
-        
-        movie.getMovieData("", type: "Popular"){responseObject in
-            
-            self.arr = responseObject
+        //Default load the "Popular Movies"
+        movie.getMainMovieData("", type: "Popular"){responseObject in
+            self.resultingMovies = responseObject
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
-                
             })
             
         }
@@ -84,15 +80,14 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return arr.count
+        return resultingMovies.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         
         
-        let movie:Movie = arr[indexPath.row]
-        
+        let movie:Movie = resultingMovies[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier("tableCell") as! TableCell
         cell.updateCell(movie)
         return cell
@@ -104,7 +99,7 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         
-        
+        //show the popOver menu
         if(segue.identifier == "showMenu")
         {
             let popOverVC = segue.destinationViewController as! PopupViewController
@@ -114,6 +109,7 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
             
             
         }
+            //Segue to the movie detail view from the selected cell
         else if(segue.identifier == "segueFromCell")
         {
             let cell = sender as! UITableViewCell
@@ -121,25 +117,25 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
             
             let destinationViewController = segue.destinationViewController as! MovieDetailViewController
             destinationViewController.delegate = self
-            destinationViewController.movie = arr[indexPath.row]
+            destinationViewController.movie = resultingMovies[indexPath.row]
             destinationViewController.favoriteMovieIDSet = self.favoriteSetId
         }
         
         
     }
     
-    
+    //Setup the popoverMenu
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.None
     }
     
     
-    
+    //Search for the movie when "Search" is pressed on keyboard
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
-        movie.getMovieData(search.text!, type: "Search"){responseObject in
+        movie.getMainMovieData(search.text!, type: "Search"){responseObject in
             
-            self.arr = responseObject
+            self.resultingMovies = responseObject
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.queryLabel.text = "Search Results"
@@ -154,6 +150,7 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
         
     }
     
+    //Delegate to update favorites list, also save it to the device
     func newFavorites(favoriteMovieSetId: Set<Int>, deleted:Bool)
     {
         self.favoriteSetId = favoriteMovieSetId
@@ -162,25 +159,27 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
         defaults.setObject(array, forKey: "Favorites")
     }
     
+    //Delegate that popular was pressed in the popover menu
     func popularPressed()
     {
-        movie.getMovieData("", type: "Popular"){responseObject in
+        movie.getMainMovieData("", type: "Popular"){responseObject in
             
-            self.arr = responseObject
+            self.resultingMovies = responseObject
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
                 
             })
         }
         queryLabel.text = "Popular"
-       
+        
     }
     
+    //Delegate that intheaters was pressed in the popover menu
     func inTheatersPressed()
     {
-        movie.getMovieData("", type: "InTheatres"){responseObject in
+        movie.getMainMovieData("", type: "InTheatres"){responseObject in
             
-            self.arr = responseObject
+            self.resultingMovies = responseObject
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
                 
@@ -190,12 +189,13 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
         
     }
     
+    //Delegate that favorites was pressed in the popover menu
     func favoritesPressed()
     {
         
         movie.getMovieFavorites(favoriteSetId){responseObject in
             
-            self.arr = responseObject
+            self.resultingMovies = responseObject
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
             })
@@ -204,11 +204,12 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
         
     }
     
-    func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+    //Hide the keyboard when not in use
+    func dismissKeyboard()
+    {
         search.resignFirstResponder()
     }
-    
+    //Hide keyboard when scrolling
     func scrollViewWillBeginDragging(scrollView: UIScrollView)
     {
         dismissKeyboard()

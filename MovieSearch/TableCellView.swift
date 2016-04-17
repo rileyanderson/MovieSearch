@@ -23,10 +23,14 @@ class TableCell: UITableViewCell
     func updateCell(movie:Movie)
     {
         showActivityIndicator()
+        
+        //set the title, description, and user rating
         title.text = movie.title
         desc.text = movie.description
         userRating.text =  "\u{2B50} \(movie.rating) / 10"
         
+        
+        //get the movie year from the date string
         var movieYear:String?
         if(movie.releaseDate == "")
         {
@@ -41,15 +45,16 @@ class TableCell: UITableViewCell
             movieYear = movieYearDay.substringToIndex(index2!)
         }
         
-        //print(movieYear)
         year.text = "(\(movieYear!))"
         
         let URL = NSURL(string: movie.poster)
         
+        //Set the poster image
         poster.sd_setImageWithURL(URL, placeholderImage: UIImage(named: "placeholder.png"))
         hideActivityIndicator()
     }
     
+    //fade in and out for smoother loads
     func showActivityIndicator()
     {
         UIView.animateWithDuration( 0.7, animations: {

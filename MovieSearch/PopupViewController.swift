@@ -25,14 +25,14 @@ class PopupViewController: UIViewController
     
     override func viewDidLoad()
     {
- 
+        
         popular.addTarget(self, action: #selector(PopupViewController.PopularPressed), forControlEvents: .TouchUpInside)
         favorites.addTarget(self, action: #selector(PopupViewController.FavoritesPressed), forControlEvents: .TouchUpInside)
         inTheaters.addTarget(self, action: #selector(PopupViewController.InTheatersPressed), forControlEvents: .TouchUpInside)
         
     }
     
-    
+    //Send info that "popular" was pressed
     func PopularPressed()
     {
         delegate.popularPressed()
@@ -40,7 +40,7 @@ class PopupViewController: UIViewController
         popular.backgroundColor = UIColor.grayColor()
         
     }
-    
+    //Send info that "favorites" was pressed
     func FavoritesPressed()
     {
         
@@ -48,7 +48,7 @@ class PopupViewController: UIViewController
         self.dismissViewControllerAnimated(true, completion: nil)
         favorites.backgroundColor = UIColor.grayColor()
     }
-    
+    //Send info that "in theaters" was pressed
     func InTheatersPressed()
     {
         delegate.inTheatersPressed()
@@ -56,7 +56,7 @@ class PopupViewController: UIViewController
         inTheaters.backgroundColor = UIColor.grayColor()
     }
     
-
+    
     
     
     

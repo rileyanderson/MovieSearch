@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+//Cell for the extra images
 class ExtraImageCell:UICollectionViewCell
 {
     
