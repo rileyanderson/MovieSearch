@@ -196,7 +196,7 @@
 				3F0827261CBDBE9B006F8D82 /* UIView+WebCacheOperation.m */,
 				3F0826F21CBDBDF0006F8D82 /* MovieSearch-Bridging-Header.h */,
 			);
-			name = SDWebImage;
+			path = SDWebImage;
 			sourceTree = "<group>";
 		};
 		3F829FB11CBC6B48009BB70C = {
@@ -594,7 +594,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.self.MovieSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "MovieSearch-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SDWebImage/MovieSearch-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -615,7 +615,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.self.MovieSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "MovieSearch-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SDWebImage/MovieSearch-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
