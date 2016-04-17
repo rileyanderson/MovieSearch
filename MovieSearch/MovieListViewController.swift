@@ -75,6 +75,11 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
             
         }
         
+        //Dismiss the keybard when tapped out of search
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MovieListViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -105,6 +110,7 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
             let popOverVC = segue.destinationViewController as! PopupViewController
             popOverVC.popoverPresentationController?.delegate = self
             popOverVC.delegate = self
+            dismissKeyboard()
             
             
         }
@@ -198,7 +204,15 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
         
     }
     
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        search.resignFirstResponder()
+    }
     
+    func scrollViewWillBeginDragging(scrollView: UIScrollView)
+    {
+        dismissKeyboard()
+    }
     
     
     
