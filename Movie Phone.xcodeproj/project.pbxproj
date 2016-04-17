@@ -605,7 +605,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.self.MovieSearch;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.self.MoviePhone;
 				PRODUCT_NAME = "Movie Phone";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SDWebImage/MovieSearch-Bridging-Header.h";
@@ -629,7 +629,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.self.MovieSearch;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.self.MoviePhone;
 				PRODUCT_NAME = "Movie Phone";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SDWebImage/MovieSearch-Bridging-Header.h";
@@ -668,7 +668,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.self.MovieSearchUITests;
 				PRODUCT_NAME = "Movie Phone";
-				TEST_TARGET_NAME = MovieSearch;
+				PROVISIONING_PROFILE = "";
+				TEST_TARGET_NAME = "Movie Phone";
 				USES_XCTRUNNER = YES;
 			};
 			name = Debug;
@@ -680,7 +681,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.self.MovieSearchUITests;
 				PRODUCT_NAME = "Movie Phone";
-				TEST_TARGET_NAME = MovieSearch;
+				PROVISIONING_PROFILE = "";
+				TEST_TARGET_NAME = "Movie Phone";
 				USES_XCTRUNNER = YES;
 			};
 			name = Release;

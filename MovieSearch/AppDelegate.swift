@@ -12,15 +12,11 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var MovieListVC: MovieListViewController = MovieListViewController()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-//        window = UIWindow(frame:UIScreen.mainScreen().bounds)
-//        
-//        window?.rootViewController = UINavigationController(rootViewController: MovieListVC)
-//        window?.makeKeyAndVisible()
-         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         NSThread.sleepForTimeInterval(0.8)
        
         return true
