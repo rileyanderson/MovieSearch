@@ -21,10 +21,7 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var movieDetailView: MovieDetailView!
     @IBOutlet var extraImagesCollectionView: UICollectionView!
-    @IBOutlet weak var favoriteStatusText: UILabel!
-    @IBOutlet var favoriteStatusView: UIView!
-    //@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    //@IBOutlet var activityIndicatorView: UIView!
+
     
     var delegate : UpDatedFavoritesDelegate! = nil
     var movie: Movie!
@@ -44,6 +41,7 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
         navigationController?.navigationBar.translucent = true
         
         
+        //Set up the heart button
         button.frame = CGRectMake(0, 0, 51, 31)
         
         //Ceck If Movie is favorite and set heart button accordingly
@@ -82,7 +80,7 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
         
     }
     
-    //Set up the extra images
+    //Set up the extra images collection view
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return self.images.count
@@ -137,10 +135,12 @@ class MovieDetailViewController : UIViewController, UICollectionViewDataSource
     func hideActivityIndicator()
     {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-        UIView.animateWithDuration(0.7, animations: {
-            self.loadingView.alpha = 0.0
-        })
-        
+            UIView.animateWithDuration(0.7, animations: {
+                self.loadingView.alpha = 0.0
+                }, completion: { finished in
+                    self.activityIndicator.stopAnimating()
+            })
+            
         })
     }
     

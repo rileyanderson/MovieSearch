@@ -68,7 +68,7 @@ class SearchResults{
         let url = NSURL(string: query)!
         var callBackArray  = Array<Movie>()
         
-        // Make the POST call and handle it in a completion handler
+        
         session.dataTaskWithURL(url, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             // Make sure we get an OK response
             guard let realResponse = response as? NSHTTPURLResponse where
@@ -124,7 +124,7 @@ class SearchResults{
         self.genre = ""
         
         
-        // Make the POST call and handle it in a completion handler
+        
         session.dataTaskWithURL(url, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             // Make sure we get an OK response
             guard let realResponse = response as? NSHTTPURLResponse where
@@ -171,7 +171,7 @@ class SearchResults{
             let session = NSURLSession.sharedSession()
             let url = NSURL(string: query)!
             
-            // Make the POST call and handle it in a completion handler
+            
             session.dataTaskWithURL(url, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
                 // Make sure we get an OK response
                 guard let realResponse = response as? NSHTTPURLResponse where

@@ -51,6 +51,7 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
         //Get the device saved favorites set
         self.favoriteSetId = Set(defaults.objectForKey("Favorites") as? Array<Int> ?? Array<Int>())
         
+        //Set up the view
         navigationController?.popoverPresentationController?.backgroundColor = UIColor.blackColor()
         navigationController?.navigationBar.barTintColor = UIColor.blackColor()
         navigationController?.navigationBar.translucent = true
@@ -78,6 +79,7 @@ class MovieListViewController: UIViewController, UITextFieldDelegate, UITableVie
         
     }
     
+    //Set up the table view
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return resultingMovies.count

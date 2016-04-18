@@ -20,8 +20,6 @@ class MovieDetailView: UIView
     @IBOutlet var desc: UILabel!
     @IBOutlet var genre: UILabel!
     @IBOutlet var trailer: UIWebView!
-    //@IBOutlet var loadingView: UIView!
-    //@IBOutlet var activityIndicator: UIActivityIndicatorView!
     var images:Array<String> = Array<String>()
     var search:SearchResults = SearchResults()
     
@@ -29,7 +27,6 @@ class MovieDetailView: UIView
     
     func loadData(movie:Movie, extraData:MovieExtraData)
     {
-        //showActivityIndicator()
         
         //Set the background Image
         let URL = NSURL(string: movie.background)
@@ -79,26 +76,10 @@ class MovieDetailView: UIView
         self.trailer.opaque = false
         self.trailer.backgroundColor = UIColor.clearColor()
         
-        //hideActivityIndicator()
+
     }
     
-    //Fade in and out of view with an activity indicator for smoother loads
-//    func showActivityIndicator()
-//    {
-//        
-//        UIView.animateWithDuration( 0.7, animations: {
-//            self.loadingView.alpha = 1.0
-//        })
-//    }
-//    
-//    func hideActivityIndicator()
-//    {
-//        
-//        UIView.animateWithDuration(0.7, animations: {
-//            self.loadingView.alpha = 0.0
-//        })
-//        //self.activityIndicator.alpha = 0.0
-//    }
+
     
     
     
